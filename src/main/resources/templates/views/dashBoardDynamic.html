@@ -1,0 +1,101 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="dashBoardDynamic">
+  <div class="col-lg-16">
+            <div class="card" id="cloneScenario" th:if="${tab != null && tab == 'cloneScenario'}">
+ 			 <div class="card-title">
+                                    <h4>Clone Scenario</h4>
+
+              </div>
+               <div class="card-body">
+               <form>
+				<div  class="form-group" style=" margin-top: 5%;     margin-bottom: 3%; margin-right: 10%;width: 50%;" >
+                          <div class="input-group input-group-rounded">
+                               <label>Scenario ID :</label> <input type="text"    style="  margin-left: 17px; " name="scenarioId"  id="scenarioId" class="form-control" required>
+                                  <button type="submit" class="btn btn-info btn-rounded m-b-10 m-l-5 scenarioClone">Clone</button>
+                          </div>
+                </div>
+                </form>       			  
+    		</div>
+    		</div>
+    		
+    		
+    		<div class="card" id="deleteScenario" th:if="${tab != null && tab == 'deleteScenario'}">
+ 			 <div class="card-title">
+                                    <h4>Delete Scenario</h4>
+
+              </div>
+               <div class="card-body">
+               <form>
+				<div  class="form-group" style=" margin-top: 5%;     margin-bottom: 3%; margin-right: 10%;width: 50%;" >
+                          <div class="input-group input-group-rounded">
+                               <label>Scenario ID :</label> <input type="text"    style="  margin-left: 17px; " name="scenarioId"  id="scenarioId" class="form-control" required>
+                                  <button type="submit" class="btn btn-warning btn-rounded m-b-10 m-l-5 scenarioDelete">Delete</button>
+                          </div>
+                </div>
+                </form>       			  
+    		</div>
+    		</div>
+    		
+    		
+    		<div class="card" id="addNewShipment" th:if="${tab != null && tab == 'addNewShipment'}">
+ 			 <div class="card-title">
+                                    <h4>Add New Shipment</h4>
+
+              </div>
+               <div class="card-body">
+               <form id="newShipmentRequest"  method="GET" th:action="@{/addNewShipment}"> 
+				<div  class="form-group" style=" margin-top: 5%;     margin-bottom: 3%; margin-right: 10%;width: 50%;" >
+                          <div class="input-group input-group-rounded">
+                               <label>Scenario ID :</label> <input type="text"    style="  margin-left: 17px; " name="scenarioId"  id="scenarioId" class="form-control" required>
+                                  <button type="submit" class="btn btn-primary btn-rounded m-b-10 m-l-5 shipmentAdd">Add Shipment</button>
+                          </div>
+                </div>
+                  </form>     			  
+    		</div>
+    		</div>
+    		
+    		<div class="card" id="cloneShipment" th:if="${tab != null && tab == 'cloneShipment'}">
+ 			 <div class="card-title">
+                                    <h4>Clone Shipment</h4>
+
+              </div>
+               <div class="card-body">
+               <form id="updateScenarioDetails"   method="Post" > 
+				<div  class="form-group" style=" margin-top: 5%;     margin-bottom: 3%; margin-right: 10%;width: 50%;" >
+                          <div class="input-group input-group-rounded">
+                               <label>Scenario ID :</label> <input type="text" style="margin-left: 17px;" name="scenarioId"  class="form-control" required>
+                          </div>
+                          
+                           <div class="input-group input-group-rounded" style="margin-top: 4%;">
+                               <label>Shipment ID :</label> <input type="text"    style="  margin-left: 17px; " name="shipmentId"   class="form-control" required>
+                                  <button type="submit" class="btn btn-info btn-rounded m-b-10 m-l-5 cloneShipment">Clone Shipment</button>
+                          </div>
+                </div>
+                  </form>     			  
+    		</div>
+    		</div>
+    		
+    		<div class="card" id="deleteShipment" th:if="${tab != null && tab == 'deleteShipment'}">
+    		
+    		<div class="card-title">
+                                    <h4>Delete Shipment</h4>
+              </div>
+               <div class="card-body">
+               <form id="updateScenarioDetails"   method="Post" > 
+				<div  class="form-group" style=" margin-top: 5%;     margin-bottom: 3%; margin-right: 10%;width: 50%;" >
+                          <div class="input-group input-group-rounded">
+                               <label>Scenario ID :</label> <input type="text" style="margin-left: 17px;" name="scenarioId"  class="form-control" required>
+                          </div>
+                          
+                           <div class="input-group input-group-rounded" style="margin-top: 4%;">
+                               <label>Shipment ID :</label> <input type="text"    style="  margin-left: 17px; " name="shipmentId"   class="form-control" required>
+                                  <button type="submit" class="btn btn-warning btn-rounded m-b-10 m-l-5 deleteShipment">Delete Shipment</button>
+                          </div>
+                </div>
+                  </form>     			  
+    		</div>
+    		</div>
+   </div>
+</div>
+
+</html>

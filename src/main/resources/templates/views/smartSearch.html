@@ -1,0 +1,56 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<div th:fragment="smartSearch">
+
+    <div class="row" style="overflow-x : scroll" th:if="${not #lists.isEmpty(response.responseData.listOfScenarios)}">
+        <div class="col-lg-16">
+            <div class="card">
+
+                <div class="bootstrap-data-table-panel">
+                    <div class="table-responsive">
+                        <table id="bootstrap-data-table-export" class="display table table-borderd table-hover cell-border">
+                            <thead>
+                                <tr>
+                                    <th style="border-top: 1px solid #dddddd;">Scenario Id</th>
+                                    <th style="border-top: 1px solid #dddddd;">Scenario Desc</th>
+                                    <th style="border-top: 1px solid #dddddd;">Status</th>
+                                    <th style="border-top: 1px solid #dddddd;">Release No</th>
+                                    <th style="border-top: 1px solid #dddddd;">Category</th>
+                                    <th style="border-top: 1px solid #dddddd;">Sub Category</th>
+                                    <th style="border-top: 1px solid #dddddd;">ErReq Flag</th>
+                                    <th style="border-top: 1px solid #dddddd;">Green Flag</th>
+                                    <th style="border-top: 1px solid #dddddd;">Initiative Id</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr th:each="scenarios :  ${response.responseData.listOfScenarios}">
+                                    <td>
+                                        <form th:id="${scenarios.scenarioId}" th:action="@{/fetchScenarioDetails}" method="Post">
+                                            <input type="hidden" name="scenarioId" th:value="${scenarios.scenarioId}" />
+                                            <span class="scenarioIds" onclick="$(this).closest('form').submit();"  onmouseover="this.style.cursor='pointer';" style="font-size: 15px;font-weight: 600;color: rgba(5, 118, 218, 0.81);" th:text="${scenarios.scenarioId}">
+																	</span>
+                                        </form>
+                                    </td>
+                            		<td th:text="${scenarios.scenarioDesc}" /></td>
+                                    <td th:text="${scenarios.status}" /></td>
+                                    <td th:text="${scenarios.releaseNumber}" /></td>
+                                    <td th:text="${scenarios.category}" /></td>
+                                    <td th:text="${scenarios.subCategory}" /></td>
+                                    <td th:text="${scenarios.erReqFlag}" /></td>
+                                    <td th:text="${scenarios.greenFlag}" /></td>
+                                    <td th:text="${scenarios.initiativeId}" /></td>
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- /# card -->
+        </div>
+        <!-- /# column -->
+    </div>
+    <!-- /# row -->
+</div>
+
+</html>

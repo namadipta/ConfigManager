@@ -1,0 +1,49 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+        <div class="header" th:fragment="header">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="float-left">
+                            <div class="hamburger sidebar-toggle">
+                                <span class="line"></span>
+                                <span class="line"></span>
+                                <span class="line"></span>
+                            </div>
+                        </div>
+                        <div class="float-right">
+                          <!--  <ul style="width: 600px;">
+
+                                <li class="header-icon1 dib" style="width: 450px;">
+                                    <form   th:action="@{/smartSearch}" method="POST">
+								
+								 		<div class="form-group" style=" margin-bottom: 0px;    margin-right: 3%;" >
+                                                <div class="input-group input-group-rounded">
+                                                    <input type="text" placeholder="Search ... " id="searchBox" name="Search" class="form-control" style="height: 38px;width: 68%;">
+                                                     <select class="form-control" name="filter" id="smartSearchFilter"  style="width: 47px;width: 42%;">
+                                        					<option  value="" > --select-- </option>
+                                        					<option  value="scenarioId" > Scenario Id </option>
+                                        					<option  value="releaseNumber" > Release No </option>
+                                        					<option  value="scenarioDesc" > Scenario Desc </option>
+                                        					<option  value="initiativeId" > Initiative Id </option>
+                                        					<option  value="testInputNumber" > Test Input No </option>
+													</select>
+                                                    <span class="input-group-btn"><button  class="btn btn-primary btn-group-right"  style="background: #c3c4ca;border-color: #c3c4ca;height: 38px;" id="searchButton" type="submit" disabled><i class="ti-search"></i></button></span>
+                                                </div>
+                                            </div>
+                       			  
+                       			  </form>
+                                </li>
+                                <li class="header-icon dib" >
+                                   <a  th:href="@{/logout}" ><i class="ti-power-off"></i> <span th:text="${session.login.userName}" th:unless="${session == null}"></span></a>
+                                </li>
+                            </ul> -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	
+
+</html>

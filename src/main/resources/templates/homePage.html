@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="ctx" th:content="${#httpServletRequest.getContextPath()}" />
+
+    <title> Config Manager </title>
+
+    <link href="css/lib/owl.theme.default.min.css" rel="stylesheet" />
+    <link href="css/lib/font-awesome.min.css" rel="stylesheet">
+    <link href="css/lib/themify-icons.css" rel="stylesheet">
+    <link href="css/lib/menubar/sidebar.css" rel="stylesheet">
+    <link href="css/lib/bootstrap.min.css" rel="stylesheet">
+    <link href="css/lib/data-table/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="css/lib/data-table/buttons.bootstrap.min.css" rel="stylesheet" />
+    <link href="css/lib/jsgrid/jsgrid-theme.min.css" rel="stylesheet" />
+    <link href="css/lib/jsgrid/jsgrid.min.css" type="text/css" rel="stylesheet" />
+    <link href="css/lib/sweetalert/sweetalert.css" rel="stylesheet">
+    <link href="css/popup.css" rel="stylesheet">
+    <link href="css/lib/helper.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+    <link href="css/editable/bootstrap-editable.css" rel="stylesheet">
+    <link href="css/lib/toastr/toastr.min.css" rel="stylesheet">
+
+    <script th:src="@{js/lib/jquery.min.js}" type="text/javascript"></script>
+    <script th:src="@{js/global.js}"></script>
+    <script th:src="@{js/event.js}"></script>
+    <script th:src="@{js/scenarios.js}"></script>
+    <script th:src="@{js/shipments.js}"></script>
+    <script th:src="@{js/eventPreConfig.js}"></script>
+    <script th:src="@{js/releaseNumberConfig.js}"></script>
+    <script th:src="@{js/massLockUnlock.js}"></script>
+    <style>
+       
+       th {
+            border-top: 1px solid #dddddd;
+            border-bottom: 1px solid #dddddd;
+            border-right: 1px solid #dddddd;
+        }
+        
+        th:first-child {
+            border-left: 1px solid #dddddd;
+        }
+        .li-disabled{
+	 pointer-events:none;
+	 opacity:0.6;  
+}
+        
+        .borderless td, .borderless th {
+    border: none !important;
+    border-top: none !important;
+}
+        
+        .eventtable tbody tr.highlight td { background-color: #dddddd; }
+        
+        .center {
+        margin-top: 2%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+    width: 100%;
+    height: 775px;
+     border-radius: 50%;
+}
+
+.buttons-csv {
+  background-image: none;
+  background: #ffffff;
+  color: #373757;
+  border-color: #e7e7e7;
+  margin-right: 10px;
+  padding: 7px 20px;
+  border-radius: 0px;
+  font-size: inherit;
+}
+
+.buttons-excel {
+  background-image: none;
+  background: #ffffff;
+  color: #373757;
+  border-color: #e7e7e7;
+  margin-right: 10px;
+  padding: 7px 20px;
+  border-radius: 0px;
+  font-size: inherit;
+}
+    </style>
+</head>
+<script type="text/javascript">
+   
+    	
+    	
+   
+   
+</script>
+<body>
+    <div th:replace="fragments/sidebar :: sidebar"></div>
+    <div th:replace="fragments/header :: header"></div>
+	<input type="hidden" id="modelAttr" name="fault" th:value="${fault}"/>
+	<input type="hidden" id="tab" name="tab" th:value="${tab}"/>
+	
+    <div class="content-wrap">
+        <div class="main" style="background: #e5e6e8;">
+            <div class="container-fluid">
+
+                <section id="main-content" style="min-height: 795px;overflow: hidden; ">
+
+                    <div id="contentDiv">
+
+                        <div id="contentDiv" th:replace="@{'views/' + ${content}} :: ${content}"></div>
+
+                    </div>
+
+                </section>
+                <div th:replace="fragments/footer :: footer"></div>
+
+                <div id="myModal" class="modal fade">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header" id="modal-header">
+                            </div>
+                            <div class="modal-body" id="modal-body">
+                            </div>
+                            <div class="modal-footer" id="modal-footer">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="wait" style="background: #e9e9e9;  display: none;  position: absolute;   top: 0;       right: 0;       left: 0; bottom: 0; opacity: 0.5;"></div>
+        <div id="load" style="display:none;width:50px;height:50px;position:absolute;top:30%;left:50%;padding:2px;"><img src="images/demo_wait.gif" style="height: 90px;width: 90px;"/></div>
+    </div>
+    <!-- jquery vendor -->
+    <script th:src="@{js/scripts.js}" type="text/javascript"></script>
+
+
+    <script th:src="@{js/lib/jquery.nanoscroller.min.js}" type="text/javascript"></script>
+    <!-- sidebar -->
+    <script th:src="@{js/lib/bootstrap.min.js}" type="text/javascript"></script>
+    <!-- nano scroller -->
+    <script th:src="@{js/lib/menubar/sidebar.js}" type="text/javascript"></script>
+    <script th:src="@{js/lib/preloader/pace.min.js}" type="text/javascript"></script>
+
+  	<script th:src="@{js/lib/jquery-ui/jquery-ui.min.js}" type="text/javascript"></script>
+  	<script th:src="@{js/lib/jquery-ui/jquery.ui.touch-punch.min.js}" type="text/javascript"></script>
+    <!-- bootstrap -->
+
+    <script th:src="@{js/lib/circle-progress/circle-progress.min.js}" type="text/javascript"></script>
+    <script th:src="@{js/lib/circle-progress/circle-progress-init.js}" type="text/javascript"></script>
+
+    <!-- scripit init-->
+    <script th:src="@{js/lib/data-table/datatables.min.js}" type="text/javascript"></script>
+    <script th:src="@{js/lib/data-table/dataTables.bootstrap.min.js}" type="text/javascript"></script>
+    <script th:src="@{js/lib/data-table/dataTables.buttons.min.js}" type="text/javascript"></script>
+    <script th:src="@{js/lib/data-table/buttons.bootstrap.min.js}" type="text/javascript"></script>
+    <script th:src="@{js/lib/data-table/jszip.min.js}" type="text/javascript"></script>
+    <script th:src="@{js/lib/data-table/pdfmake.min.js}" type="text/javascript"></script>
+    <script th:src="@{js/lib/data-table/vfs_fonts.js}" type="text/javascript"></script>
+    <script th:src="@{js/lib/data-table/buttons.html5.min.js}" type="text/javascript"></script>
+    <script th:src="@{js/lib/data-table/buttons.print.min.js}" type="text/javascript"></script>
+    <script th:src="@{js/lib/data-table/buttons.colVis.min.js}" type="text/javascript"></script>
+    <script th:src="@{js/lib/data-table/datatables-init.js}" type="text/javascript"></script>
+	
+
+    <script th:src="@{/js/lib/jsgrid/jsgrid.core.js}"></script>
+    <script th:src="@{/js/lib/jsgrid/jsgrid.load-indicator.js}"></script>
+    <script th:src="@{/js/lib/jsgrid/jsgrid.load-strategies.js}"></script>
+    <script th:src="@{/js/lib/jsgrid/jsgrid.sort-strategies.js}"></script>
+    <script th:src="@{/js/lib/jsgrid/jsgrid.validation.js}"></script>
+    <script th:src="@{/js/lib/jsgrid/jsgrid.field.js}"></script>
+    <script th:src="@{/js/lib/jsgrid/fields/jsgrid.field.text.js}"></script>
+    <script th:src="@{/js/lib/jsgrid/fields/jsgrid.field.number.js}"></script>
+    <script th:src="@{/js/lib/jsgrid/fields/jsgrid.field.select.js}"></script>
+    <script th:src="@{/js/lib/jsgrid/fields/jsgrid.field.checkbox.js}"></script>
+    <script th:src="@{/js/lib/jsgrid/fields/jsgrid.field.control.js}"></script>
+    <script th:src="@{/js/lib/jsgrid/db.js}"></script>
+    <script th:src="@{/js/lib/editable/bootstrap-editable.min.js}"></script>
+    <script th:src="@{/js/lib/sweetalert/sweetalert.min.js}"></script>
+    <script th:src="@{/js/lib/toastr/toastr.min.js}"></script>
+    
+</body>
+
+</html>
