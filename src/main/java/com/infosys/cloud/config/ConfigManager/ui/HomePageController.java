@@ -14,7 +14,7 @@ public class HomePageController {
 	@RequestMapping(value = "/")
 	public String index(ModelMap model) {
 		model.addAttribute("content", "dashBoardDynamic");
-		return "homePage";
+		return "index";
 	}
 
 }
