@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.infosys.cloud.config.ConfigManager.ui.display.service;
+package com.infosys.cloud.config.configmanager.ui.display.service;
 
 import java.util.List;
 

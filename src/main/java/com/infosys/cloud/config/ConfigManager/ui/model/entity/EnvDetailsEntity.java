@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.infosys.cloud.config.ConfigManager.ui.model.entity;
+package com.infosys.cloud.config.configmanager.ui.model.entity;
 
 import java.time.ZonedDateTime;
 

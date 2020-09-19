@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.infosys.cloud.config.ConfigManager.ui.display.common;
+package com.infosys.cloud.config.configmanager.ui.display.common;
 
 import java.io.Serializable;
 
