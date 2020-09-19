@@ -36,25 +36,12 @@
         <div class="main-panel">
           <div class="content-wrapper">
 
-                        <div class="content-wrapper" th:replace="@{'views/' + ${content}} :: ${content}"></div>
-
-
-                <div th:replace="fragments/footer :: footer"></div>
- 			<div id="myModal" class="modal fade">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header" id="modal-header">
-                            </div>
-                            <div class="modal-body" id="modal-body">
-                            </div>
-                            <div class="modal-footer" id="modal-footer">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-          
+			<li class="nav-item nav-category">List Of Apps</li> 
+		
+				<li class="nav-item"  th:each="apps : ${listOfApps}"  ><a class="nav-link" > <i
+				class="menu-icon typcn typcn-document-text"></i> <span
+				class="menu-title" th:text="${apps.text}" th:value="${apps.id}"></span>
+		</a></li>          
                 
           <!-- partial -->
         </div>
