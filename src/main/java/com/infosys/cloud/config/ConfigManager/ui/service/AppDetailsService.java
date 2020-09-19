@@ -8,10 +8,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.infosys.cloud.config.ConfigManager.ui.mapper.AppDetailsMapper;
-import com.infosys.cloud.config.ConfigManager.ui.model.entity.AppDetailsEntity;
-import com.infosys.cloud.config.ConfigManager.ui.model.service.AppDetailsServicePojo;
-import com.infosys.cloud.config.ConfigManager.ui.repo.AppDetailsRepo;
+import com.infosys.cloud.config.configmanager.ui.mapper.AppDetailsMapper;
+import com.infosys.cloud.config.configmanager.ui.model.entity.AppDetailsEntity;
+import com.infosys.cloud.config.configmanager.ui.model.service.AppDetailsServicePojo;
+import com.infosys.cloud.config.configmanager.ui.repo.AppDetailsRepo;
 
 /**
  * @author namadipta

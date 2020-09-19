@@ -6,7 +6,7 @@ package com.infosys.cloud.config.configmanager.ui.repo;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.infosys.cloud.config.ConfigManager.ui.model.entity.AppDetailsEntity;
+import com.infosys.cloud.config.configmanager.ui.model.entity.AppDetailsEntity;
 
 /**
  * @author namadipta

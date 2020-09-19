@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.infosys.cloud.config.ConfigManager.ui.model.service.AppDetailsServicePojo;
-import com.infosys.cloud.config.ConfigManager.ui.service.AppDetailsService;
+import com.infosys.cloud.config.configmanager.ui.model.service.AppDetailsServicePojo;
+import com.infosys.cloud.config.configmanager.ui.service.AppDetailsService;
 
 /**
  * @author namadipta

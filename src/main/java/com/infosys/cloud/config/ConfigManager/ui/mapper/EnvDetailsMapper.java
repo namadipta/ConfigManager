@@ -9,8 +9,8 @@ import org.mapstruct.IterableMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.NullValueMappingStrategy;
 
-import com.infosys.cloud.config.ConfigManager.ui.model.entity.EnvDetailsEntity;
-import com.infosys.cloud.config.ConfigManager.ui.model.service.EnvDetailsServicePojo;
+import com.infosys.cloud.config.configmanager.ui.model.entity.EnvDetailsEntity;
+import com.infosys.cloud.config.configmanager.ui.model.service.EnvDetailsServicePojo;
 
 /**
  * @author namadipta

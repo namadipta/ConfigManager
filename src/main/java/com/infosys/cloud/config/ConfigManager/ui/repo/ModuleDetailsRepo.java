@@ -8,7 +8,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.infosys.cloud.config.ConfigManager.ui.model.entity.ModuleDetailsEntity;
+import com.infosys.cloud.config.configmanager.ui.model.entity.ModuleDetailsEntity;
 
 /**
  * @author namadipta

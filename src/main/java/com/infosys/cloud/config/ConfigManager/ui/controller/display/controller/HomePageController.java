@@ -10,9 +10,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.infosys.cloud.config.ConfigManager.ui.display.service.HomePageService;
-import com.infosys.cloud.config.ConfigManager.ui.model.service.AppDetailsServicePojo;
-import com.infosys.cloud.config.ConfigManager.ui.service.AppDetailsService;
+import com.infosys.cloud.config.configmanager.ui.display.service.HomePageService;
+import com.infosys.cloud.config.configmanager.ui.model.service.AppDetailsServicePojo;
+import com.infosys.cloud.config.configmanager.ui.service.AppDetailsService;
 
 /**
  * @author namadipta

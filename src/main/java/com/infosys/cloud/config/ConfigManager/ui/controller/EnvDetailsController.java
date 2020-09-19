@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.infosys.cloud.config.ConfigManager.ui.model.service.EnvDetailsServicePojo;
-import com.infosys.cloud.config.ConfigManager.ui.service.EnvDetailsService;
+import com.infosys.cloud.config.configmanager.ui.model.service.EnvDetailsServicePojo;
+import com.infosys.cloud.config.configmanager.ui.service.EnvDetailsService;
 
 /**
  * @author namadipta
