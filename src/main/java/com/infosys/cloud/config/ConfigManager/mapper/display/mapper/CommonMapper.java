@@ -7,6 +7,8 @@ import java.util.List;
 
 import org.mapstruct.IterableMapping;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
 import org.mapstruct.NullValueMappingStrategy;
 
 import com.infosys.cloud.config.configmanager.model.common.DropdownValue;
@@ -25,5 +27,8 @@ public interface CommonMapper {
 	 */
 	@IterableMapping(nullValueMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT)
 	List<DropdownValue> mapForDropdown(List<AppDetailsServicePojo> appDetails);
+
+	@Mappings({ @Mapping(source = "appId", target = "id"), @Mapping(source = "appName", target = "text") })
+	DropdownValue mapForDropdowns(AppDetailsServicePojo appDetails);
 
 }
