@@ -1,37 +1,28 @@
 
 <html xmlns:th="http://www.thymeleaf.org">
-
-	  <div class="sidebar sidebar-hide-to-small sidebar-shrink sidebar-gestures" th:fragment="sidebar">
-            <div class="nano">
-                <div class="nano-content">
-                    <div class="logo"><a th:href="@{/}"><!-- <img  src="images/logo.png" alt="" /> --><span>Config Manager</span></a></div>
-                    <div style="height: 25px;"></div>
-                    <ul>
-                        <!-- <li  th:if="${session.login.userRole != null && session.login.userRole == 'ADMIN'}"><a class="sidebar-sub-toggle"><i class="ti-home"></i> Admin  <span class="sidebar-collapse-icon ti-angle-down"></span></a>
-                            <ul>
-                                <li><a th:href="@{/accessRequest}" id="accessRequest">Access Request</a></li>
-                                <li><a th:href="@{/eventPreConfig}" id="eventPreConfig">Event PreConfig</a></li>
-                                <li><a th:href="@{/releaseNumberConfig}" id="releaseNumberConfig">Release Number Config</a></li>
-                                <li><a th:href="@{/massLockUnlock}" id="massLockUnlock">Mass Lock/Unlock</a></li>
-                            </ul>
-                        </li>
-                         <li ><a class="sidebar-sub-toggle"> Scenario  <span class="sidebar-collapse-icon ti-angle-down"></span></a>
-                            <ul>
-                                <li><a th:href="@{/addNewScenario}" id="addNewScenario">Create New Scenario</a></li>
-                                <li><a th:href="@{'/menu?tab=cloneScenario'}" id="cloneScenario">Clone Scenario</a></li>
-                                <li><a th:href="@{'/menu?tab=deleteScenario'}" id="deleteScenario">Delete Scenario</a></li>
-                            </ul>
-                        </li>
-                         <li ><a class="sidebar-sub-toggle"> Shipment  <span class="sidebar-collapse-icon ti-angle-down"></span></a>
-                            <ul>
-                                <li><a th:href="@{'/menu?tab=addNewShipment'}" id="addNewShipment">New Shipment</a></li>
-                                <li><a th:href="@{'/menu?tab=cloneShipment'}" id="cloneShipment">Clone Shipment</a></li>
-                                <li><a th:href="@{'/menu?tab=deleteShipment'}" id="deleteShipment">Delete Shipment</a></li>
-                            </ul>
-                        </li> -->
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!-- /# sidebar -->
+<nav class="sidebar sidebar-offcanvas" id="sidebar"
+	th:fragment="sidebar" th:if="${modules}" >
+	<ul class="nav" >
+	<!-- 	<li class="nav-item nav-profile"><a href="#" class="nav-link">
+				<div class="profile-image">
+					<img class="img-xs rounded-circle"
+						src="assets/images/faces/face8.jpg" alt="profile image">
+					<div class="dot-indicator bg-success"></div>
+				</div>
+				<div class="text-wrapper">
+					<p class="profile-name">Allen Moreno</p>
+					<p class="designation">Premium user</p>
+				</div>
+		</a></li> -->
+		<!-- th:each="dropDownItem : ${listOfStatus}"  th:value="${dropDownItem.id}" th:text="${dropDownItem.value}" -->
+		<li class="nav-item nav-category">Modules</li> 
+		
+		<li class="nav-item"  th:each="moduleItems : ${modules.listOfModules}"  ><a class="nav-link" > <i
+				class="menu-icon typcn typcn-document-text"></i> <span
+				class="menu-title" th:text="${moduleItems.text}"></span>
+		</a></li>
+		
+		
+	</ul>
+</nav>
 </html>
