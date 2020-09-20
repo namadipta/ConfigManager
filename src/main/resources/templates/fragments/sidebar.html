@@ -1,28 +1,14 @@
-
 <html xmlns:th="http://www.thymeleaf.org">
-<nav class="sidebar sidebar-offcanvas" id="sidebar"
-	th:fragment="sidebar" th:if="${modules}" >
+<nav class="sidebar sidebar-offcanvas" id="sidebar" th:fragment="sidebar" th:if="${appDisplayDetails}" >
 	<ul class="nav" >
-	<!-- 	<li class="nav-item nav-profile"><a href="#" class="nav-link">
-				<div class="profile-image">
-					<img class="img-xs rounded-circle"
-						src="assets/images/faces/face8.jpg" alt="profile image">
-					<div class="dot-indicator bg-success"></div>
-				</div>
-				<div class="text-wrapper">
-					<p class="profile-name">Allen Moreno</p>
-					<p class="designation">Premium user</p>
-				</div>
-		</a></li> -->
-		<!-- th:each="dropDownItem : ${listOfStatus}"  th:value="${dropDownItem.id}" th:text="${dropDownItem.value}" -->
 		<li class="nav-item nav-category">Modules</li> 
-		
-		<li class="nav-item"  th:each="moduleItems : ${modules.listOfModules}"  ><a class="nav-link" > <i
+		<li class="nav-item "  th:each="moduleItems : ${appDisplayDetails.listOfModules}"  >
+		<a class="nav-link module-class"> <i
 				class="menu-icon typcn typcn-document-text"></i> <span
-				class="menu-title" th:text="${moduleItems.text}"></span>
-		</a></li>
-		
-		
+				class="menu-title" th:value="${moduleItems.id}" th:id="${moduleItems.id}" th:text="${moduleItems.text}"></span>
+		</a>
+		</li>
 	</ul>
 </nav>
+
 </html>

@@ -7,7 +7,6 @@
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Config Manager</title>
-<!-- plugins:css -->
 <link rel="stylesheet"
 	href="assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
 <link rel="stylesheet"
@@ -17,15 +16,8 @@
 <link rel="stylesheet" href="assets/vendors/css/vendor.bundle.base.css">
 <link rel="stylesheet"
 	href="assets/vendors/css/vendor.bundle.addons.css">
-<!-- endinject -->
-<!-- plugin css for this page -->
-<!-- End plugin css for this page -->
-<!-- inject:css -->
 <link rel="stylesheet" href="assets/css/shared/style.css">
-<!-- endinject -->
-<!-- Layout styles -->
 <link rel="stylesheet" href="assets/css/demo_1/style.css">
-<!-- End Layout styles -->
 <link rel="shortcut icon" href="assets/images/favicon.ico" />
 </head>
 <body>
@@ -39,13 +31,15 @@
 							<div class="card">
 								<div class="card-body">
 									<div class="form-group">
-										<label for="selectApplication">Select Application</label> <select
-											class="form-control form-control-lg" name="applicationName"
-											th:field="*{listOfApps}">
+										<label for="selectApplication">Select Application</label>
+										<form  th:action="@{/appdetails}"  method="POST" th:object="${appData}" >
+										 <select class="form-control form-control-lg"  th:field="*{appName}"   required>
 											<option value="">Select</option>
-											<option th:each="dropDownItem : ${listOfApps}"
+											<option th:each="dropDownItem : ${appData.listOfApps}"
 												th:value="${dropDownItem.id}" th:text="${dropDownItem.text}" />
 										</select>
+										<button type="submit" class="btn btn-success mr-2" style="margin-top: 2%;margin-left: 44%;">Select</button>
+										</form>
 									</div>
 								</div>
 							</div>

@@ -23,7 +23,7 @@
     <link rel="shortcut icon" href="assets/images/favicon.ico" />
   </head>
   <body>
-    <div class="container-scroller">
+    <div class="container-scroller" style="width: 100%; height: 100%;">
     <input type="hidden" id="modelAttr" name="fault" th:value="${fault}"/>
 	<input type="hidden" id="tab" name="tab" th:value="${tab}"/>
       <!-- partial:partials/_navbar.html -->
@@ -33,7 +33,7 @@
         <!-- partial:partials/_sidebar.html -->
          <div th:replace="fragments/sidebar :: sidebar"></div>
         <!-- partial -->
-        <div class="main-panel">
+        <div class="main-panel" style="width: 81%; height: 100%;">
           <div class="content-wrapper">
 
                         <div class="content-wrapper" th:replace="@{'views/' + ${content}} :: ${content}"></div>
@@ -75,5 +75,45 @@
     <!-- Custom js for this page-->
     <script src="assets/js/demo_1/dashboard.js"></script>
     <!-- End custom js for this page-->
+    <script>
+
+
+$('.module-class').click(function(e) {
+	e.preventDefault();
+    $('.module-class').removeClass('active');
+    $(this).addClass('active');
+	
+	var modalHeader= '<div class="col-12 grid-margin" id="proptiesDetails" style="min-height: 400px;margin-top: 1px;"><div class="card" style="min-height: 404px;"><div class="card-body"> </div></div></div>';
+	  $('#proptiesDetails').html(modalHeader);
+	  $('#selectedProfile').prop('selectedIndex',0);
+	  $('#selectedEnv').prop('selectedIndex',0);
+});
+$('#selectedProfile').change(function(e) {
+	  $('#selectedEnv').prop('selectedIndex',0);
+});
+$('#selectedEnv').change(function(e) {
+	
+	var selectedModuleId = $('.active').find('span').attr('id');
+	if(selectedModuleId == null || selectedModuleId == 'undefined'){
+		alert('please choose Module')
+		return false;
+	} 
+	var requestData = $("#appDisplayDetails").serialize() + '&selectedModuleId=' + selectedModuleId;
+	$.ajax({
+		url: "/propdetails",
+		type : 'POST',
+		dataType:'json',
+		data: requestData,
+		success: function(result){
+
+			
+		},
+		error : function(error){
+			alert('error fetching prop')
+			
+		}
+	});
+});
+</script>
   </body>
 </html>
