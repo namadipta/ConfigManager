@@ -1,0 +1,45 @@
+<html xmlns:th="http://www.thymeleaf.org">
+		<div class="col-12 grid-margin" style="min-height: 400px; margin-top: 1px;"  th:fragment="propdetails" th:if="${propDetails != null }" > 
+                <div class="card">
+                  <div class="card-body">
+                  	<div>
+                   	  <h4 class="card-title" th:text="'Prop Version : '+${propDetails.propVersion}" style="display: inline;"></h4>
+                       <button class="btn btn-success mr-2" style="float: right;" id="editProp">Edit</button>
+                       <div class="col-sm-6 col-md-4 col-lg-3 " id="addProperties" style="display: inline; max-width: 20%; margin-right:-10%; cursor:pointer"><i class="fa fa-plus-circle"></i> Add </div>
+                    </div>
+                    <form class="form-sample" action="#"  th:action="@{/savepropdetails}"  method="POST" th:object="${saveProperties}" >
+                      <button type="submit" class="btn btn-success mr-2" style="float: right; display: none; " id="saveProp">Save</button>
+                    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search ..." style="margin-left :37%">
+                     <table class="table table-hover" id="propDetailsTable">
+                      <thead>
+                        <tr>
+                          <th>Properties</th>
+                          <th>Values</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                      	<input type = "hidden" id="appId" th:value="${selectedAppRequest.appId}" name="appId"/>
+                        <input type = "hidden" id="selectedModule" th:value="${selectedAppRequest.selectedModule}" name="selectedModule"/>
+                        <input type = "hidden" id="selectedLabel" th:value="${selectedAppRequest.selectedLabel}" name="selectedLabel"/>
+                        <input type = "hidden" id="selectedProfile" th:value="${selectedAppRequest.selectedProfile}" name="selectedProfile"/>
+                        <input type = "hidden" id="propVersion" th:value="${propDetails.propVersion}" name="propVersion"/>
+                        <input type = "hidden" id="counter" th:if="${saveProperties.savePropDetails!=null and !saveProperties.savePropDetails.empty}" th:value="${#lists.size(saveProperties.savePropDetails)}" name="counter"/>
+                        <tr th:each="props, stat : ${saveProperties.savePropDetails}">
+                         
+                        <td>
+                        <textarea class="form-control"   th:field="${saveProperties.savePropDetails[__${stat.index}__].id}"  ></textarea> </td>
+    					<td>
+    					<textarea class="form-control"   th:field="${saveProperties.savePropDetails[__${stat.index}__].text}" ></textarea> </td>
+    					<td style="width: 1%;padding-right: 3%;"><div class="col-sm-6 col-md-4 col-lg-3 edittool" style="display: none;"><i class="fa fa-minus-circle"></i></div></td>
+                        <td style="width: 4%;display: none;" class="edittool">
+                            <div class="form-radio">
+                                <input type="checkbox" class="form-check-input"   th:checked="${props.hide}"  th:field="${saveProperties.savePropDetails[__${stat.index}__].hide}" > <label class="form-check-label"> Private </label>
+                            </div>
+                        </td>
+                        </tr>
+                      </tbody>
+                    </table> 
+                    </form>
+                  </div>
+                </div>
+              </div>

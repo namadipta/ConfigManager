@@ -1,0 +1,32 @@
+<html xmlns:th="http://www.thymeleaf.org">
+ <div class="col-md-7 grid-margin stretch-card" style="margin-top: 2%;margin-left: 22%;display: inline;margin-bottom: 3%;"  th:fragment="appdetails" id="appdetails">
+                <div class="card">
+                  <div class="card-body">
+                   <form  th:action="@{/propdetails}"  method="POST" th:object="${appDisplayDetails}" id = "appDisplayDetails">
+                   <div class="form-group" style="display: inline; width: 50%;float: left;padding: 5%;">
+                      <label for="exampleFormControlSelect2">Profile</label>
+                     <select class="form-control form-control-lg"  name="selectedProfile" id="selectedProfile"  required>
+							<option value="">Select</option>
+							<option th:each="dropDownItem : ${appDisplayDetails.listOfProfs}" th:value="${dropDownItem.id}" th:text="${dropDownItem.text}" th:selected="${dropDownItem.id == selectedAppRequest.selectedProfile}"  />
+					  </select>
+                    </div>
+                    <div class="form-group" style="display: inline; width: 50%;float: left;padding: 5%;">
+                      <label for="exampleFormControlSelect1">Label</label>
+                      <select class="form-control form-control-lg"  name="selectedLabel"  id="selectedLabel" required >
+							<option value="">Select</option>
+							<option th:each="dropDownItem : ${appDisplayDetails.listOflabels}" th:value="${dropDownItem.id}" th:text="${dropDownItem.text}" th:selected="${dropDownItem.id == selectedAppRequest.selectedLabel}" />
+					  </select>
+                    </div>
+                    	<input type = "hidden" id="appId" th:value="${appId}" name="appId"/>
+                        <input type = "hidden" id="modId" th:value="${selectedAppRequest.selectedModule}" name="selectedModule"/>
+						<button type="submit" class="btn btn-success mr-2" style="margin-left: 42%;display : inline;">Search</button>
+                  </form>
+                  </div>
+                  <form  th:action="@{/loadbulkpage}"  method="POST" th:object="${appDisplayDetails}" id = "appDisplayDetails">
+                	    <input type = "hidden" id="appId" th:value="${appId}" name="appId"/>
+                        <input type = "hidden" id="selectedModule"  name="selectedModule"/>
+                  		<button  type="submit" class="btn btn-success mr-2" style="margin-bottom: 2%;margin-left: 41%;display: inline;" id="showBulk" >Bulk upload</button>
+                  </form>
+                </div>
+     </div>
+	

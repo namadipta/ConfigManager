@@ -1,12 +1,26 @@
 <html xmlns:th="http://www.thymeleaf.org">
-<nav class="sidebar sidebar-offcanvas" id="sidebar" th:fragment="sidebar" th:if="${appDisplayDetails}" >
-	<ul class="nav" >
+<nav class="sidebar sidebar-offcanvas" id="sidebar" th:fragment="sidebar"  >
+	<input type = "hidden" id="appId" th:value="${appId}" />
+	 
+	<ul class="nav"  style="margin-top: 25%;">
 		<li class="nav-item nav-category">Modules</li> 
-		<li class="nav-item "  th:each="moduleItems : ${appDisplayDetails.listOfModules}"  >
+		<li class="nav-item " th:each="moduleItems : ${appDisplayDetails.listOfModules}"  >
 		<a class="nav-link module-class"> <i
 				class="menu-icon typcn typcn-document-text"></i> <span
 				class="menu-title" th:value="${moduleItems.id}" th:id="${moduleItems.id}" th:text="${moduleItems.text}"></span>
 		</a>
+		</li>
+	</ul>
+	<ul class="nav"  style="margin-top: 25%;">
+		<li class="nav-item nav-category">Other</li> 
+		<li class="nav-item" >
+		<form  th:action="@{/loadcomparepage}"  method="POST"  >
+		<input type = "hidden" id="appId" name= "appId" th:value="${appId}" />
+		<button class="nav-link " type="submit" style="background: linear-gradient(to top, #2196f3, #2196f3);border: none;width: 100%;"> <i
+				class="menu-icon typcn typcn-document-text"></i> <span
+				class="menu-title" th:value="compare" th:id="compare" th:text="Compare"></span>
+		</button>
+		</form>
 		</li>
 	</ul>
 </nav>

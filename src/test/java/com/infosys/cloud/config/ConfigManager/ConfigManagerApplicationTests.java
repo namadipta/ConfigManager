@@ -1,4 +1,4 @@
-//package com.infosys.cloud.config.configmanager;
+//package com.cloud.config.configmanager;
 //
 //import org.junit.jupiter.api.Test;
 //import org.springframework.boot.test.context.SpringBootTest;

@@ -33,7 +33,7 @@
 									<div class="form-group">
 										<label for="selectApplication">Select Application</label>
 										<form  th:action="@{/appdetails}"  method="POST" th:object="${appData}" >
-										 <select class="form-control form-control-lg"  th:field="*{appName}"   required>
+										 <select class="form-control form-control-lg"  th:field="*{appId}"   required>
 											<option value="">Select</option>
 											<option th:each="dropDownItem : ${appData.listOfApps}"
 												th:value="${dropDownItem.id}" th:text="${dropDownItem.text}" />
