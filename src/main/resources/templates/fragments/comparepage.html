@@ -1,29 +1,79 @@
 <html xmlns:th="http://www.thymeleaf.org">
- <div class="col-md-7 grid-margin stretch-card" style="margin-top: 2%;margin-left: 22%;display: inline;margin-bottom: 3%;"  th:fragment="comparepage" id="comparepage">
-                
-<div class="card bulk">
-                  <div class="card-body">
-                   <form  th:action="@{/uploadproperties}" enctype="multipart/form-data"   method="POST" id = "bulkUploadProps">
+ <div class="col-md-7 grid-margin stretch-card" style="margin-top: 2%;margin-left: 5%;display: inline;margin-bottom: 3%;min-width: 90%;"  th:fragment="comparepage" id="comparepage">
+ <div class="card" style="display: inline;width: 50%;float: left;">
+                  <div class="card-body" >
+ <form  th:action="@{/compareprops}"  method="POST" th:object="${compareprops}" id = "compareprops"  name="compareprops" >
+			<div class="card" style="display: inline;width: 50%;float: left;">
+                  <div class="card-body" >
+                 	 <h6>Source</h6>
                     <div class="form-group" style="display: inline; width: 50%;float: left;padding: 5%;">
-                      <label for="exampleFormControlSelect2">Profile</label>
-                     <select class="form-control form-control-lg"  name="selectedProfile" id="selectedProfile"  required>
+                      <label for="exampleFormControlSelect2">Module</label>
+                     <select class="form-control form-control-lg compareSource"  name="sourceSelectedModule" id="sourceSelectedModule"  required>
 							<option value="">Select</option>
-							<option th:each="dropDownItem : ${appDisplayDetails.listOfProfs}" th:value="${dropDownItem.id}" th:text="${dropDownItem.text}" th:selected="${dropDownItem.id == selectedAppRequest.selectedProfile}"  />
+							<option th:each="dropDownItem : ${appDisplayDetails.listOfModules}" th:value="${dropDownItem.id}" th:text="${dropDownItem.text}" th:selected="${dropDownItem.id == compareprops.sourceSelectedModule}"  />
+					  </select>
+                    </div>
+                   <div class="form-group" style="display: inline; width: 50%;float: left;padding: 5%;">
+                      <label for="exampleFormControlSelect2">Profile</label>
+                     <select class="form-control form-control-lg compareSource"  name="sourceSelectedProfile" id="sourceSelectedProfile"  required>
+							<option value="">Select</option>
+							<option th:each="dropDownItem : ${appDisplayDetails.listOfProfs}" th:value="${dropDownItem.id}" th:text="${dropDownItem.text}" th:selected="${dropDownItem.id == compareprops.sourceSelectedProfile}"  />
 					  </select>
                     </div>
                     <div class="form-group" style="display: inline; width: 50%;float: left;padding: 5%;">
                       <label for="exampleFormControlSelect1">Label</label>
-                      <select class="form-control form-control-lg"  name="selectedLabel"  id="selectedLabel" required >
+                      <select class="form-control form-control-lg compareSource"  name="sourceSelectedLabel"  id="sourceSelectedLabel" required >
 							<option value="">Select</option>
-							<option th:each="dropDownItem : ${appDisplayDetails.listOflabels}" th:value="${dropDownItem.id}" th:text="${dropDownItem.text}" th:selected="${dropDownItem.id == selectedAppRequest.selectedLabel}" />
+							<option th:each="dropDownItem : ${appDisplayDetails.listOflabels}" th:value="${dropDownItem.id}" th:text="${dropDownItem.text}" th:selected="${dropDownItem.id == compareprops.sourceSelectedLabel}" />
 					  </select>
                     </div>
-                    	<input type = "hidden" id="appId" th:value="${selectedAppRequest.appId}" name="appId"/>
-                        <input type = "hidden" id="modId" th:value="${selectedAppRequest.selectedModule}" name="selectedModule"/>
-                   		<input type="file" id="file" name="file" style=" width: 36%;margin-left: 29%;">
-                          <button type="submit" class="btn btn-success mr-2" style="display: inline;" value="Upload" > Upload</button>
- 				  </form>
+                    <div class="form-group" style="display: inline; width: 50%;float: left;padding: 5%;">
+                      <label for="exampleFormControlSelect1">PropVersion</label>
+                      <select class="form-control form-control-lg"  name="sourceSelectedPropVersion"  id="sourceSelectedPropVersion"  >
+							<option value="">Select</option>
+							<option th:each="dropDownItem : ${appDisplayDetails.listOfSourcePropVersion}" th:value="${dropDownItem.id}" th:text="${dropDownItem.text}" th:selected="${dropDownItem.id == compareprops.sourceSelectedPropVersion}" />
+					  </select>
+                    </div>
                   </div>
-                </div> 
-     </div>
+                </div>   
+                <div class="card" style="display: inline;width: 50%;float: right;">
+                  <div class="card-body">
+                   <h6>Target</h6>
+                    <div class="form-group" style="display: inline; width: 50%;float: left;padding: 5%;">
+                      <label for="exampleFormControlSelect2">Module</label>
+                     <select class="form-control form-control-lg compareTarget"  name="targetSelectedModule" id="targetSelectedModule"  required>
+							<option value="">Select</option>
+							<option th:each="dropDownItem : ${appDisplayDetails.listOfModules}" th:value="${dropDownItem.id}" th:text="${dropDownItem.text}" th:selected="${dropDownItem.id == compareprops.targetSelectedModule}"  />
+					  </select>
+                    </div>
+                   <div class="form-group" style="display: inline; width: 50%;float: left;padding: 5%;">
+                      <label for="exampleFormControlSelect2">Profile</label>
+                     <select class="form-control form-control-lg compareTarget"  name="targetSelectedProfile" id="targetSelectedProfile"  required>
+							<option value="">Select</option>
+							<option th:each="dropDownItem : ${appDisplayDetails.listOfProfs}" th:value="${dropDownItem.id}" th:text="${dropDownItem.text}" th:selected="${dropDownItem.id == compareprops.targetSelectedProfile}"  />
+					  </select>
+                    </div>
+                    <div class="form-group" style="display: inline; width: 50%;float: left;padding: 5%;">
+                      <label for="exampleFormControlSelect1">Label</label>
+                      <select class="form-control form-control-lg compareTarget"  name="targetSelectedLabel"  id="targetSelectedLabel" required >
+							<option value="">Select</option>
+							<option th:each="dropDownItem : ${appDisplayDetails.listOflabels}" th:value="${dropDownItem.id}" th:text="${dropDownItem.text}" th:selected="${dropDownItem.id == compareprops.targetSelectedLabel}" />
+					  </select>
+                    </div>
+                    <div class="form-group" style="display: inline; width: 50%;float: left;padding: 5%;">
+                      <label for="exampleFormControlSelect1">PropVersion</label>
+                      <select class="form-control form-control-lg"  name="targetSelectedPropVersion"  id="targetSelectedPropVersion"  >
+							<option value="">Select</option>
+							<option th:each="dropDownItem : ${appDisplayDetails.listOfTargetPropVersion}" th:value="${dropDownItem.id}" th:text="${dropDownItem.text}" th:selected="${dropDownItem.id == compareprops.targetSelectedPropVersion}" />
+					  </select>
+                    </div>
+                    </div>
+                </div>                
+           				<input type = "hidden" id="appId" th:value="${appId}" name="appId"/>
+						<button type="submit" class="btn btn-success mr-2" style="margin-left: 42%;display : inline;margin-top: 3%	">Compare</button>
+                                  
+ 			</form>
+ 		   </div>
+ 		</div>
+</div>
 	
