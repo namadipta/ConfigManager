@@ -42,6 +42,8 @@ public class AppDisplayDetails implements Serializable {
 
 	private String selectedModule;
 
+	private String moduleId;
+
 	private String appId;
 
 }

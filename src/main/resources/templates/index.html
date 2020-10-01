@@ -44,20 +44,10 @@
     <script>
     
 
-$('.module-class').click(function(e) {
-	e.preventDefault();
-    $('.module-class').removeClass('active');
-    $('.module-class').css("background", "linear-gradient(to top, #2196f3, #2196f3)");
-    $(this).addClass('active');
-    $(this).css("background", "#0f25d5");
-	  $('#selectedProfile').prop('selectedIndex',0);
-	  $('#selectedLabel').prop('selectedIndex',0);
-	  var selectedModuleId = $('.active').find('span').attr('id');
-	  $('#modId').val(selectedModuleId);
-	  $('#selectedModule').val(selectedModuleId);
-	  
+$( document ).ready(function() {
+	var selectedModuleId = $('.active').find('span').attr('id');
+	$('#selectedModule').val(selectedModuleId);
 });
-
 $('#selectedProfile').change(function(e) {
 	  $('#selectedLabel').prop('selectedIndex',0);
 });

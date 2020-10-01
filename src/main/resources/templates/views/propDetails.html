@@ -3,7 +3,8 @@
                 <div class="card">
                   <div class="card-body">
                   	<div>
-                   	  <h4 class="card-title" th:text="'Prop Version : '+${propDetails.propVersion}" style="display: inline;"></h4>
+                   	  <h4 class="card-title" style="display: inline;">Prop Version : </h4>
+                   	  <h4 class="card-title" th:text="${propDetails?.propVersion}" style="display: inline;"></h4>
                        <button class="btn btn-success mr-2" style="float: right;" id="editProp">Edit</button>
                        <div class="col-sm-6 col-md-4 col-lg-3 " id="addProperties" style="display: inline; max-width: 20%; margin-right:-10%; cursor:pointer"><i class="fa fa-plus-circle"></i> Add </div>
                     </div>

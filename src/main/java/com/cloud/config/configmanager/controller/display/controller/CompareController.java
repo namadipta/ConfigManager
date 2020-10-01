@@ -53,6 +53,7 @@ public class CompareController {
 		model.addAttribute("appId", selectedAppId);
 		model.addAttribute("comparepage", "true");
 		model.addAttribute("compareprops", new ComparePropPojo());
+		model.addAttribute("selectedAppRequest", new AppDisplayDetails());
 
 		model.addAttribute("content", "comparePropDetails");
 		return "index";

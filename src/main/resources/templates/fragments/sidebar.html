@@ -5,10 +5,14 @@
 	<ul class="nav"  style="margin-top: 25%;">
 		<li class="nav-item nav-category">Modules</li> 
 		<li class="nav-item " th:each="moduleItems : ${appDisplayDetails.listOfModules}"  >
-		<a class="nav-link module-class"> <i
+		<form  th:action="@{/loadmodule}"  method="POST"  >
+		<input type = "hidden" id="appId" name= "appId" th:value="${appId}" />
+		<input type = "hidden" id="moduleId" name= "moduleId" th:value="${moduleItems.id}" />
+		<button class="nav-link module-class" th:classappend="${selectedAppRequest.selectedModule} ? active : nonactive" th:styleappend ="${selectedAppRequest.selectedModule} ? 'background:linear-gradient(to top, #1e8ae3, #0a5998)' : 'background:linear-gradient(to top, #2196f3, #2196f3)'" type="submit" style="border: none;width: 100%;"> <i
 				class="menu-icon typcn typcn-document-text"></i> <span
-				class="menu-title" th:value="${moduleItems.id}" th:id="${moduleItems.id}" th:text="${moduleItems.text}"></span>
-		</a>
+				class="menu-title" th:value="${moduleItems.id}" th:id="${moduleItems.id}" th:text="${moduleItems.text}" ></span>
+		</button>
+		</form>
 		</li>
 	</ul>
 	<ul class="nav"  style="margin-top: 25%;">

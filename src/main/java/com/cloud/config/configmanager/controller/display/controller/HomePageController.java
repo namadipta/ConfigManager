@@ -5,6 +5,7 @@ package com.cloud.config.configmanager.controller.display.controller;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,8 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
 import com.cloud.config.configmanager.model.display.AppDisplayDetails;
 import com.cloud.config.configmanager.model.display.AppsDisplayRequest;
 import com.cloud.config.configmanager.model.service.AppDetailsServicePojo;
@@ -31,6 +30,10 @@ import com.cloud.config.configmanager.service.AppDetailsService;
 import com.cloud.config.configmanager.service.FileUploadService;
 import com.cloud.config.configmanager.service.PropDetailsService;
 import com.cloud.config.configmanager.service.display.service.HomePageService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.JsonMappingException;
+
+import io.micrometer.core.instrument.util.StringUtils;
 
 /**
  * @author namadipta
@@ -86,6 +89,27 @@ public class HomePageController {
 	}
 
 	/**
+	 * @param model
+	 * @param selectedAppRequest
+	 * @return
+	 */
+	@PostMapping(value = "/loadmodule")
+	public String loadmodule(ModelMap model, @ModelAttribute AppDisplayDetails selectedAppRequest) {
+		String selectedAppId = selectedAppRequest.getAppId();
+
+		model.addAttribute("appDisplayDetails", utilityService.getAppDetailsFromCache(selectedAppId));
+		model.addAttribute("appId", selectedAppId);
+		model.addAttribute("content", "propdetails");
+		model.addAttribute("propDetails", null);
+		if (Objects.nonNull(selectedAppRequest) && StringUtils.isNotBlank(selectedAppRequest.getModuleId())) {
+			selectedAppRequest.setSelectedModule(selectedAppRequest.getModuleId());
+		}
+		model.addAttribute("selectedAppRequest", selectedAppRequest);
+
+		return "index";
+	}
+
+	/**
 	 * TODO : Module mandatory check
 	 * 
 	 * @param model
@@ -120,6 +144,7 @@ public class HomePageController {
 
 		model.addAttribute("saveProperties", savePropDetailRequest);
 		model.addAttribute("appDisplayDetails", utilityService.getAppDetailsFromCache(selectedAppRequest.getAppId()));
+		model.addAttribute("appId", selectedAppRequest.getAppId());
 		model.addAttribute("selectedAppRequest", selectedAppRequest);
 		model.addAttribute("content", "propdetails");
 
@@ -165,6 +190,7 @@ public class HomePageController {
 		model.addAttribute("propDetails", new PropDetailsServiceResponse());
 		model.addAttribute("appDisplayDetails", utilityService.getAppDetailsFromCache(selectedAppRequest.getAppId()));
 		model.addAttribute("selectedAppRequest", selectedAppRequest);
+		model.addAttribute("appId", selectedAppRequest.getAppId());
 		model.addAttribute("bulkpage", "true");
 		model.addAttribute("content", "propdetails");
 		SavePropDetailRequest savePropDetailRequest = new SavePropDetailRequest();
