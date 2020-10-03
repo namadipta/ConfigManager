@@ -22,7 +22,7 @@
       <div class="container-fluid page-body-wrapper">
          <div th:replace="fragments/sidebar :: sidebar"></div>
          <div class="main-panel" style="width: 81%; height: 100%;">
-        <div  th:replace="${bulkpage == null && comparepage == null} ? ~{fragments/appdetails :: appdetails}: ~{}"></div>
+        <div  th:replace="${bulkpage == null && comparepage == null && appdetails == 'true'} ? ~{fragments/appdetails :: appdetails}: ~{}"></div>
         <div  th:replace="${bulkpage == 'true'} ? ~{fragments/bulkupload :: bulkupload}: ~{}"></div>
          <div  th:replace="${comparepage == 'true'} ? ~{fragments/comparepage :: comparepage}: ~{}"></div>
         
@@ -40,20 +40,5 @@
     <script src="assets/vendors/js/config.js"></script>
     <script src="assets/js/shared/off-canvas.js"></script>
     <script src="assets/js/shared/misc.js"></script>
-    <script>
-    
-	
-/* $('[data-page-size]').on('click', function(e){
-	e.preventDefault();
-	var newSize = $(this).data('pageSize');
-	('#propDetailsTable').pageSize(newSize);
-});
-jQuery(function($){
-	$('.table').footable({
-		"columns": $.get('columns.json'),
-		"rows": $.get('rows.json')
-	});
-}); */
-</script>
   </body>
 </html> 

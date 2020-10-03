@@ -28,7 +28,7 @@ public class ModuleDetailsServicePojo implements Serializable {
 
 	private Long moduleId;
 
-	private Long appId;
+	private Long appId = 1L;
 
 	private String moduleDisplayName;
 

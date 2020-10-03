@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cloud.config.configmanager.mapper.ModuleDetailsMapper;
+import com.cloud.config.configmanager.model.display.ModuleDisplayDetails;
 import com.cloud.config.configmanager.model.entity.ModuleDetailsEntity;
 import com.cloud.config.configmanager.model.service.ModuleDetailsServicePojo;
 import com.cloud.config.configmanager.repo.ModuleDetailsRepo;
@@ -35,6 +36,17 @@ public class ModuleDetailsService {
 	public List<ModuleDetailsServicePojo> fetchAllModuleForAppID(final Long appId) {
 		List<ModuleDetailsEntity> moduleDetails = moduleDetailsRepo.findByAppId(appId);
 		return moduleDetailsMapper.map(moduleDetails);
+	}
+
+	/**
+	 * Save a Module for an AppId
+	 * 
+	 * @param request
+	 * @return
+	 */
+	public String saveModule(final ModuleDisplayDetails request) {
+		final ModuleDetailsServicePojo serviceRequest = moduleDetailsMapper.map(request);
+		return this.saveModule(serviceRequest);
 	}
 
 	/**

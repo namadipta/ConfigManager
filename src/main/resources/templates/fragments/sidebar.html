@@ -1,14 +1,12 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <nav class="sidebar sidebar-offcanvas" id="sidebar" th:fragment="sidebar"  >
-	<input type = "hidden" id="appId" th:value="${appId}" />
 	 
 	<ul class="nav"  style="margin-top: 25%;">
 		<li class="nav-item nav-category">Modules</li> 
 		<li class="nav-item " th:each="moduleItems : ${appDisplayDetails.listOfModules}"  >
 		<form  th:action="@{/loadmodule}"  method="POST"  >
-		<input type = "hidden" id="appId" name= "appId" th:value="${appId}" />
 		<input type = "hidden" id="moduleId" name= "moduleId" th:value="${moduleItems.id}" />
-		<button class="nav-link module-class" th:classappend="${selectedAppRequest.selectedModule} ? active : nonactive" th:styleappend ="${selectedAppRequest.selectedModule} ? 'background:linear-gradient(to top, #1e8ae3, #0a5998)' : 'background:linear-gradient(to top, #2196f3, #2196f3)'" type="submit" style="border: none;width: 100%;"> <i
+		<button class="nav-link module-class" th:classappend="${selectedAppRequest.selectedModule == moduleItems.id} ? active : nonactive" th:styleappend ="${selectedAppRequest.selectedModule == moduleItems.id} ? 'background:linear-gradient(to top, #1e8ae3, #0a5998)' : 'background:linear-gradient(to top, #2196f3, #2196f3)'" type="submit" style="border: none;width: 100%;"> <i
 				class="menu-icon typcn typcn-document-text"></i> <span
 				class="menu-title" th:value="${moduleItems.id}" th:id="${moduleItems.id}" th:text="${moduleItems.text}" ></span>
 		</button>
@@ -19,10 +17,25 @@
 		<li class="nav-item nav-category">Other</li> 
 		<li class="nav-item" >
 		<form  th:action="@{/loadcomparepage}"  method="POST"  >
-		<input type = "hidden" id="appId" name= "appId" th:value="${appId}" />
 		<button class="nav-link " type="submit" style="background: linear-gradient(to top, #2196f3, #2196f3);border: none;width: 100%;"> <i
 				class="menu-icon typcn typcn-document-text"></i> <span
 				class="menu-title" th:value="compare" th:id="compare" th:text="Compare"></span>
+		</button>
+		</form>
+		</li>
+		<li class="nav-item" >
+		<form  th:action="@{/loadaddmodule}"  method="POST"  >
+		<button class="nav-link " type="submit" style="background: linear-gradient(to top, #2196f3, #2196f3);border: none;width: 100%;"> <i
+				class="menu-icon typcn typcn-document-text"></i> <span
+				class="menu-title" th:value="addmodule" th:id="addmodule" >Add Module</span>
+		</button>
+		</form>
+		</li>
+		<li class="nav-item" >
+		<form  th:action="@{/loaduseraccess}"  method="POST"  >
+		<button class="nav-link " type="submit" style="background: linear-gradient(to top, #2196f3, #2196f3);border: none;width: 100%;"> <i
+				class="menu-icon typcn typcn-document-text"></i> <span
+				class="menu-title" th:value="loaduseraccess" th:id="loaduseraccess" >User Access</span>
 		</button>
 		</form>
 		</li>

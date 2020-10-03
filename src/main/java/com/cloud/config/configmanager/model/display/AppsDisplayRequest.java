@@ -23,6 +23,6 @@ public class AppsDisplayRequest implements Serializable {
 
 	private List<DropdownValue> listOfApps;
 
-	private String appId;
+	private String appId = "1";
 
 }

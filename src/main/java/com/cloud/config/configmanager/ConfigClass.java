@@ -18,7 +18,7 @@
 //	@Bean(name="content-part")
 //	@Scope("prototype")
 //	public ThymeleafView someViewBean() {
-//	    ThymeleafView view = new ThymeleafView("index"); // templateName = 'index'
+//	    ThymeleafView view = new ThymeleafView("configHome"); // templateName = 'index'
 //	    view.setMarkupSelector("#propDetails");
 //	    return view;
 //	}

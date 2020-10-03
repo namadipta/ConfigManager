@@ -56,7 +56,7 @@ public class CompareController {
 		model.addAttribute("selectedAppRequest", new AppDisplayDetails());
 
 		model.addAttribute("content", "comparePropDetails");
-		return "index";
+		return "configHome";
 	}
 
 	@PostMapping(value = "/compareprops")
@@ -77,7 +77,7 @@ public class CompareController {
 		model.addAttribute("compareprops", compareRequest);
 		model.addAttribute("compareResponse", compareService.compareProps(compareRequest));
 		model.addAttribute("content", "comparePropDetails");
-		return "index";
+		return "configHome";
 	}
 
 	/**

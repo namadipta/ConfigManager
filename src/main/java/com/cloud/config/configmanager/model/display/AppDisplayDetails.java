@@ -44,6 +44,6 @@ public class AppDisplayDetails implements Serializable {
 
 	private String moduleId;
 
-	private String appId;
+	private String appId = "1";
 
 }
