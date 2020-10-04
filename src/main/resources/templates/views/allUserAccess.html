@@ -1,0 +1,41 @@
+<html xmlns:th="http://www.thymeleaf.org">
+		<div class="col-12 grid-margin" style="min-height: 400px; margin-top: 1px;"  th:fragment="allUserAccess" th:if="${allUserAccess != null }" > 
+                <div class="card">
+                  <div class="card-body">
+                  	<div>
+                   	  <h4 class="card-title" style="display: inline;">User Access</h4>
+                    </div>
+                    <form class="form-sample" action="#"  th:action="@{/saveuser}"  method="POST" th:object="${allUserAccess}" >
+                      <button type="submit" class="btn btn-success mr-2" style="float: right " id="saveProp">Save</button>
+                    <input type="text" id="myInput" onkeyup="searchUser()" placeholder="Search ..." style="margin-left :37%">
+                     <table class="table table-hover" id="userDetailsTable">
+                      <thead>
+                        <tr>
+                          <th>User Email</th>
+                          <th >Admin</th>
+                          <th>View</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr th:each="props, stat : ${allUserAccess.listOfUser}">
+                        <td style="width: 35%"><textarea style="resize:none " class="form-control"   th:field="${allUserAccess.listOfUser[__${stat.index}__].email}" ></textarea> </td>
+    					
+    					<td style="width: 15%; padding-left:2%">
+                            <div class="form-radio">
+                                <input type="checkbox" class="form-check-input"   th:checked="${props.admin}"  th:field="${allUserAccess.listOfUser[__${stat.index}__].admin}" > <label class="form-check-label"> Admin </label>
+                            </div>
+                        </td>
+    					
+    					<td style="width: 15%" >
+                            <div class="form-radio">
+                                <input type="checkbox" class="form-check-input"   th:checked="${props.viewAccess}"  th:field="${allUserAccess.listOfUser[__${stat.index}__].viewAccess}" > <label class="form-check-label"> Viewer </label>
+                            </div>
+                        </td>
+    					
+                        </tr>
+                      </tbody>
+                    </table> 
+                    </form>
+                  </div>
+                </div>
+              </div>
