@@ -52,7 +52,7 @@ public class CompareController {
 		model.addAttribute("compareprops", new ComparePropPojo());
 		model.addAttribute("selectedAppRequest", new AppDisplayDetails());
 
-		model.addAttribute("content", "comparePropDetails.html");
+		model.addAttribute("content", "comparePropDetails");
 		return "configHome.html";
 	}
 
@@ -72,7 +72,7 @@ public class CompareController {
 		model.addAttribute("comparepage", "true");
 		model.addAttribute("compareprops", compareRequest);
 		model.addAttribute("compareResponse", compareService.compareProps(compareRequest));
-		model.addAttribute("content", "comparePropDetails.html");
+		model.addAttribute("content", "comparePropDetails");
 		model.addAttribute("selectedAppRequest", selectedAppRequest);
 
 		return "configHome.html";
