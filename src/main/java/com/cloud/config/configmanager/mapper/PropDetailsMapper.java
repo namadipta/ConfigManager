@@ -81,4 +81,9 @@ public interface PropDetailsMapper {
 	@Mappings({ @Mapping(target = "id", source = "propVersion"), @Mapping(target = "text", source = "propVersion") })
 	DropdownValue mapDropDown(PropDetailsEntity latestPropDetails);
 
+	/**
+	 * @param properties
+	 * @return
+	 */
+	AppDisplayDetails mapper(SavePropDetailRequest properties);
 }

@@ -4,7 +4,10 @@
         <div class="text-center navbar-brand-wrapper d-flex align-items-top justify-content-center">
         </div> 
         <div class="navbar-menu-wrapper d-flex align-items-center">
-        <div style="width:90%"></div>
+        <div style="width:90%">
+        <h6  style="display: inline;"> Hello  </h6>
+        <h6 style="display: inline;" th:text="${session.user.name} + ' !'"  th:unless="${session == null}" ></h6>
+        </div>
            <ul>
             <li class="nav-item dropdown d-none d-xl-inline-block user-dropdown">
                 <a  th:href="@{/logout}" ><i class="ti-power-off"></i> <span >Log Out</span></a>

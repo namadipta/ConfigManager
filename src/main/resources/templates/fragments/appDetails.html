@@ -21,7 +21,7 @@
 						<button type="submit" class="btn btn-success mr-2" style="margin-left: 42%;display : inline;">Search</button>
                   </form>
                   </div>
-                  <form  th:action="@{/loadbulkpage}"  method="POST" th:object="${appDisplayDetails}" id = "appDisplayDetails">
+                  <form  th:action="@{/loadbulkpage}"  method="POST" th:object="${appDisplayDetails}" id = "appDisplayDetails" th:if="${session.user.role == 'ADMIN'}" th:unless="${session == null}">
                         <input type = "hidden" id="selectedModule"  name="selectedModule"/>
                   		<button  type="submit" class="btn btn-success mr-2" style="margin-bottom: 2%;margin-left: 41%;display: inline;" id="showBulk" >Bulk upload</button>
                   </form>

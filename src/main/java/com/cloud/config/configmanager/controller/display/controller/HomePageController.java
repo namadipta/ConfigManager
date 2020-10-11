@@ -34,9 +34,6 @@ import io.micrometer.core.instrument.util.StringUtils;
 @Controller
 public class HomePageController {
 
-//	@Autowired
-//	private AppDetailsService appDetailsService;
-
 	@Autowired
 	private UtilityService utilityService;
 
@@ -65,7 +62,7 @@ public class HomePageController {
 	public String loadAppDetails(ModelMap model) {
 
 		model.addAttribute("appDisplayDetails", utilityService.getAppDetailsFromCache());
-		
+
 		model.addAttribute("content", "propdetails");
 		model.addAttribute("propDetails", null);
 		model.addAttribute("selectedAppRequest", new AppDisplayDetails());
@@ -152,8 +149,8 @@ public class HomePageController {
 		savePropDetailRequest.setSavePropDetails(propDetailsService.processProperties(savePropDetails));
 		model.addAttribute("saveProperties", savePropDetailRequest);
 		model.addAttribute("appDisplayDetails", utilityService.getAppDetailsFromCache());
-//		AppDisplayDetails selectedAppRequest = appDetailsService.prepareSelectedAppRequest(properties);
-//		model.addAttribute("selectedAppRequest", selectedAppRequest);
+		AppDisplayDetails selectedAppRequest = propDetailsService.prepareSelectedAppRequest(properties);
+		model.addAttribute("selectedAppRequest", selectedAppRequest);
 		model.addAttribute("content", "propdetails");
 		model.addAttribute("appdetails", "true");
 		return "configHome";

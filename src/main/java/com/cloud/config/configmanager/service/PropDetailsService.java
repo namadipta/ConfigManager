@@ -346,4 +346,12 @@ public class PropDetailsService {
 				Long.parseLong(targetSelectedLabel), Long.parseLong(targetSelectedProfile),
 				Long.parseLong(targetSelectedPropVersion));
 	}
+
+	/**
+	 * @param properties
+	 * @return
+	 */
+	public AppDisplayDetails prepareSelectedAppRequest(SavePropDetailRequest properties) {
+		return propDetailsMapper.mapper(properties);
+	}
 }

@@ -5,8 +5,8 @@
                   	<div>
                    	  <h4 class="card-title" style="display: inline;">Prop Version : </h4>
                    	  <h4 class="card-title" th:text="${propDetails?.propVersion}" style="display: inline;"></h4>
-                       <button class="btn btn-success mr-2" style="float: right;" id="editProp">Edit</button>
-                       <div class="col-sm-6 col-md-4 col-lg-3 " id="addProperties" style="display: inline; max-width: 20%; margin-right:-10%; cursor:pointer"><i class="fa fa-plus-circle"></i> Add </div>
+                       <button class="btn btn-success mr-2" style="float: right;" id="editProp" th:if="${session.user.role == 'ADMIN'}" th:unless="${session == null}">Edit</button>
+                       <div class="col-sm-6 col-md-4 col-lg-3 " th:if="${session.user.role == 'ADMIN'}" th:unless="${session == null}" id="addProperties" style="display: inline; max-width: 20%; margin-right:-10%; cursor:pointer"><i class="fa fa-plus-circle"></i> Add </div>
                     </div>
                     <form class="form-sample" action="#"  th:action="@{/savepropdetails}"  method="POST" th:object="${saveProperties}" >
                       <button type="submit" class="btn btn-success mr-2" style="float: right; display: none; " id="saveProp">Save</button>

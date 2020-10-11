@@ -1,7 +1,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
  <div class="col-md-7 grid-margin stretch-card" style="margin-top: 2%;margin-left: 22%;display: inline;margin-bottom: 3%;"  th:fragment="bulkupload" id="bulkupload">
                 
-                 <div class="card bulk">
+                 <div class="card bulk" th:if="${session.user.role == 'ADMIN'}" th:unless="${session == null}">
                   <div class="card-body">
                    <form  th:action="@{/uploadproperties}" enctype="multipart/form-data"   method="POST" id = "bulkUploadProps">
                     <div class="form-group" style="display: inline; width: 50%;float: left;padding: 5%;">
