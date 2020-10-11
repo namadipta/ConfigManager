@@ -32,8 +32,8 @@ public class ProfDetailsService {
 	 * @param request
 	 * @return
 	 */
-	public List<ProfDetailsServicePojo> fetchAllProfForAppId(final Long appId) {
-		List<ProfDetailsEntity> profDetails = profDetailsRepo.findByAppId(appId);
+	public List<ProfDetailsServicePojo> fetchAllProfForAppId() {
+		List<ProfDetailsEntity> profDetails = profDetailsRepo.findAll();
 		return profDetailsMapper.map(profDetails);
 	}
 

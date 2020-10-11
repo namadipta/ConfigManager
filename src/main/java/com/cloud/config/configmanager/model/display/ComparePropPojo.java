@@ -29,7 +29,7 @@ public class ComparePropPojo implements Serializable {
 	 */
 	private static final long serialVersionUID = 2486485984017331583L;
 
-	private String appId;
+//	private String appId;
 
 	private String targetSelectedModule;
 

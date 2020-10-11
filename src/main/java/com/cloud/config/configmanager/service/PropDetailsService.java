@@ -72,9 +72,9 @@ public class PropDetailsService {
 		PropDetailsEntity latestPropDetails = null;
 
 		if (Objects.nonNull(request) && Objects.nonNull(request.getPropVersion())) {
-			latestPropDetails = findFirstByAppIdAndModIdAndLabelIdAndProfIdAndPropVersion(request);
+			latestPropDetails = findFirstByModIdAndLabelIdAndProfIdAndPropVersion(request);
 		} else {
-			latestPropDetails = findFirstByAppIdAndModIdAndLabelIdAndProfIdOrderByPropVersionDesc(request);
+			latestPropDetails = findFirstByModIdAndLabelIdAndProfIdOrderByPropVersionDesc(request);
 		}
 		Map<String, PropDataPojo> propData = new HashMap<>();
 		if (Objects.nonNull(latestPropDetails) && StringUtils.isNotBlank(latestPropDetails.getPropData())) {
@@ -93,11 +93,10 @@ public class PropDetailsService {
 	 * @param request
 	 * @return
 	 */
-	public PropDetailsEntity findFirstByAppIdAndModIdAndLabelIdAndProfIdOrderByPropVersionDesc(
+	public PropDetailsEntity findFirstByModIdAndLabelIdAndProfIdOrderByPropVersionDesc(
 			final PropDetailsServicePojo request) {
-		PropDetailsEntity latestPropDetails = propDetailsRepo
-				.findFirstByAppIdAndModIdAndLabelIdAndProfIdOrderByPropVersionDesc(request.getAppId(),
-						request.getModId(), request.getLabelId(), request.getProfId());
+		PropDetailsEntity latestPropDetails = propDetailsRepo.findFirstByModIdAndLabelIdAndProfIdOrderByPropVersionDesc(
+				request.getModId(), request.getLabelId(), request.getProfId());
 		return latestPropDetails;
 	}
 
@@ -105,11 +104,9 @@ public class PropDetailsService {
 	 * @param request
 	 * @return
 	 */
-	public PropDetailsEntity findFirstByAppIdAndModIdAndLabelIdAndProfIdAndPropVersion(
-			final PropDetailsServicePojo request) {
-		PropDetailsEntity latestPropDetails = propDetailsRepo.findFirstByAppIdAndModIdAndLabelIdAndProfIdAndPropVersion(
-				request.getAppId(), request.getModId(), request.getLabelId(), request.getProfId(),
-				request.getPropVersion());
+	public PropDetailsEntity findFirstByModIdAndLabelIdAndProfIdAndPropVersion(final PropDetailsServicePojo request) {
+		PropDetailsEntity latestPropDetails = propDetailsRepo.findFirstByModIdAndLabelIdAndProfIdAndPropVersion(
+				request.getModId(), request.getLabelId(), request.getProfId(), request.getPropVersion());
 		return latestPropDetails;
 	}
 
@@ -120,9 +117,8 @@ public class PropDetailsService {
 	 */
 	public String savePropDetails(final PropDetailsServicePojo request) throws JsonProcessingException {
 
-		PropDetailsEntity latestPropDetails = propDetailsRepo
-				.findFirstByAppIdAndModIdAndLabelIdAndProfIdOrderByPropVersionDesc(request.getAppId(),
-						request.getModId(), request.getLabelId(), request.getProfId());
+		PropDetailsEntity latestPropDetails = propDetailsRepo.findFirstByModIdAndLabelIdAndProfIdOrderByPropVersionDesc(
+				request.getModId(), request.getLabelId(), request.getProfId());
 		PropDetailsEntity saveRequest = propDetailsMapper.prepareSaveRequest(request);
 		if (!MapUtils.isEmpty(request.getPropData())) {
 			String propData = MAPPER.writeValueAsString(request.getPropData());
@@ -198,8 +194,7 @@ public class PropDetailsService {
 			serverAddress = InetAddress.getLocalHost();
 			if (Objects.nonNull(serverAddress)) {
 				serverAddress.getHostName();
-				request.setAppId(1L);
-				AppDisplayDetails displayDetails = utilityService.getAppDetailsFromCache(request.getAppId().toString());
+				AppDisplayDetails displayDetails = utilityService.getAppDetailsFromCache();
 				request.setModId(utilityService.findModuleIdBasedOnName(displayDetails, modulename));
 				request.setProfId(utilityService.findProfileIdBasedOnName(displayDetails, profile));
 				request.setLabelId(utilityService.findLabelIdBasedOnName(displayDetails, label));
@@ -310,7 +305,7 @@ public class PropDetailsService {
 	 * @return
 	 */
 	public PropDetailsServiceResponse fetchLatestPropVersion(AppDisplayDetails selectedAppRequest) {
-		PropDetailsEntity latestPropDetails = findFirstByAppIdAndModIdAndLabelIdAndProfIdOrderByPropVersionDesc(
+		PropDetailsEntity latestPropDetails = findFirstByModIdAndLabelIdAndProfIdOrderByPropVersionDesc(
 				propDetailsMapper.map(selectedAppRequest));
 		return propDetailsMapper.mapping(latestPropDetails);
 	}
@@ -322,11 +317,11 @@ public class PropDetailsService {
 	 * @param selectedLabel
 	 * @return
 	 */
-	public List<DropdownValue> fetchAllPropVersion(String appId, String selectedModule, String selectedProfile,
+	public List<DropdownValue> fetchAllPropVersion(String selectedModule, String selectedProfile,
 			String selectedLabel) {
 		List<PropDetailsEntity> allPropVersion = propDetailsRepo
-				.findAllByAppIdAndModIdAndLabelIdAndProfIdOrderByPropVersionDesc(Long.parseLong(appId),
-						Long.parseLong(selectedModule), Long.parseLong(selectedLabel), Long.parseLong(selectedProfile));
+				.findAllByModIdAndLabelIdAndProfIdOrderByPropVersionDesc(Long.parseLong(selectedModule),
+						Long.parseLong(selectedLabel), Long.parseLong(selectedProfile));
 		if (!CollectionUtils.isEmpty(allPropVersion)) {
 			Function<PropDetailsEntity, DropdownValue> convertEntityToDropdown = req -> propDetailsMapper
 					.mapDropDown(req);
@@ -345,10 +340,10 @@ public class PropDetailsService {
 	 * @param targetSelectedPropVersion
 	 * @return
 	 */
-	public PropDetailsEntity fetchPropDetails(String appId, String targetSelectedModule, String targetSelectedProfile,
+	public PropDetailsEntity fetchPropDetails(String targetSelectedModule, String targetSelectedProfile,
 			String targetSelectedLabel, String targetSelectedPropVersion) {
-		return propDetailsRepo.findFirstByAppIdAndModIdAndLabelIdAndProfIdAndPropVersion(Long.parseLong(appId),
-				Long.parseLong(targetSelectedModule), Long.parseLong(targetSelectedLabel),
-				Long.parseLong(targetSelectedProfile), Long.parseLong(targetSelectedPropVersion));
+		return propDetailsRepo.findFirstByModIdAndLabelIdAndProfIdAndPropVersion(Long.parseLong(targetSelectedModule),
+				Long.parseLong(targetSelectedLabel), Long.parseLong(targetSelectedProfile),
+				Long.parseLong(targetSelectedPropVersion));
 	}
 }

@@ -32,8 +32,8 @@ public class LabelDetailsService {
 	 * @param request
 	 * @return
 	 */
-	public List<LabelDetailsServicePojo> fetchAllEnvForAppID(final Long appId) {
-		List<LabelDetailsEntity> envDetails = envDetailsRepo.findByAppId(appId);
+	public List<LabelDetailsServicePojo> fetchAllEnvForAppID() {
+		List<LabelDetailsEntity> envDetails = envDetailsRepo.findAll();
 		return envDetailsMapper.map(envDetails);
 	}
 

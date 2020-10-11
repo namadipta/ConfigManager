@@ -15,4 +15,9 @@ import com.cloud.config.configmanager.model.entity.UserAccessEntity;
 @Repository
 public interface UserAccessRepo extends JpaRepository<UserAccessEntity, Long> {
 
+	/**
+	 * @return
+	 */
+	UserAccessEntity findByName(String name);
+
 }

@@ -34,9 +34,35 @@ public class UserAccessService {
 	/**
 	 * @return
 	 */
+	public long count() {
+		return userAccessRepo.count();
+	}
+
+	/**
+	 * @return
+	 */
 	public List<UserAccessResponse> findAll() {
 		List<UserAccessEntity> userAccessList = userAccessRepo.findAll();
 		return userAccessMapper.map(userAccessList);
+	}
+
+	/**
+	 * @return
+	 */
+	public UserAccessResponse findByName(String name) {
+		UserAccessEntity userAccessList = userAccessRepo.findByName(name);
+		return userAccessMapper.mapResponse(userAccessList);
+	}
+
+	/**
+	 * @return
+	 */
+	public UserAccessResponse saveNewUser(String name) {
+		UserAccessEntity entity = new UserAccessEntity();
+		entity.setViewAccess(Boolean.TRUE);
+		entity.setName(name);
+		UserAccessEntity newUser = userAccessRepo.save(entity);
+		return userAccessMapper.mapResponse(newUser);
 	}
 
 	/**
@@ -49,7 +75,7 @@ public class UserAccessService {
 			List<UserAccessEntity> existingList = userAccessRepo.findAll();
 			if (!CollectionUtils.isEmpty(existingList)) {
 				List<UserAccessEntity> updatedList = userAccessList.stream().map((e) -> {
-					return existingList.stream().filter(i -> StringUtils.equalsIgnoreCase(i.getEmail(), e.getEmail()))
+					return existingList.stream().filter(i -> StringUtils.equalsIgnoreCase(i.getName(), e.getName()))
 							.findFirst().map(k -> {
 								e.setUserId(k.getUserId());
 								return e;
@@ -60,5 +86,17 @@ public class UserAccessService {
 			}
 		}
 		return null;
+	}
+
+	/**
+	 * @param name
+	 * @return
+	 */
+	public UserAccessResponse saveNewUserAsAdmin(String name) {
+		UserAccessEntity entity = new UserAccessEntity();
+		entity.setAdmin(Boolean.TRUE);
+		entity.setName(name);
+		UserAccessEntity newUser = userAccessRepo.save(entity);
+		return userAccessMapper.mapResponse(newUser);
 	}
 }

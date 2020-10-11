@@ -26,8 +26,8 @@ public class UserAccessEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long userId;
 
-	@Column(name = "email")
-	private String email;
+	@Column(name = "name")
+	private String name;
 
 	@Column(name = "view_access")
 	private Boolean viewAccess;

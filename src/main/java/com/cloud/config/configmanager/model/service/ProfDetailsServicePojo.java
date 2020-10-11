@@ -26,7 +26,7 @@ public class ProfDetailsServicePojo implements Serializable {
 
 	private Long profId;
 
-	private Long appId;
+	//private Long appId;
 
 	private String profDisplayName;
 

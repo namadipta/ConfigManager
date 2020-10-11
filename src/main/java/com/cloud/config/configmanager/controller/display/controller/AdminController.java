@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import com.cloud.config.configmanager.model.display.AllUserAccessDetailsPojo;
 import com.cloud.config.configmanager.model.display.AppDisplayDetails;
-import com.cloud.config.configmanager.model.display.AppsDisplayRequest;
 import com.cloud.config.configmanager.model.service.UtilityService;
 import com.cloud.config.configmanager.service.UserAccessService;
 
@@ -34,10 +33,7 @@ public class AdminController {
 	@PostMapping("/loaduseraccess")
 	public String loadUserAccessDetails(ModelMap model) {
 
-		AppsDisplayRequest selectedApp = new AppsDisplayRequest();
-
-		model.addAttribute("appDisplayDetails", utilityService.getAppDetailsFromCache(selectedApp.getAppId()));
-		model.addAttribute("appId", selectedApp.getAppId());
+		model.addAttribute("appDisplayDetails", utilityService.getAppDetailsFromCache());
 		AllUserAccessDetailsPojo allUserAccessDetailsPojo = new AllUserAccessDetailsPojo();
 		allUserAccessDetailsPojo.setListOfUser(userAccessService.findAll());
 		model.addAttribute("allUserAccess", allUserAccessDetailsPojo);
@@ -54,9 +50,7 @@ public class AdminController {
 	@PostMapping(value = "/saveuser")
 	public String saveUser(ModelMap model, @ModelAttribute AllUserAccessDetailsPojo userDetails) {
 		userAccessService.saveUserDetails(userDetails);
-		AppsDisplayRequest selectedApp = new AppsDisplayRequest();
-		model.addAttribute("appDisplayDetails", utilityService.getAppDetailsFromCache(selectedApp.getAppId()));
-		model.addAttribute("appId", selectedApp.getAppId());
+		model.addAttribute("appDisplayDetails", utilityService.getAppDetailsFromCache());
 		AllUserAccessDetailsPojo allUserAccessDetailsPojo = new AllUserAccessDetailsPojo();
 		allUserAccessDetailsPojo.setListOfUser(userAccessService.findAll());
 		model.addAttribute("allUserAccess", allUserAccessDetailsPojo);

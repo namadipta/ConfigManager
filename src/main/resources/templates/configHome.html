@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
+    <meta name="ctx" th:content="${#httpServletRequest.getContextPath()}" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Config Manager</title>
     <link rel="stylesheet" href="assets/vendors/iconfonts/mdi/css/materialdesignicons.min.css">
@@ -41,4 +42,14 @@
     <script src="assets/js/shared/off-canvas.js"></script>
     <script src="assets/js/shared/misc.js"></script>
   </body>
+  <script type="text/javascript">
+  var _ctx = $("meta[name='ctx']").attr("content");
+
+//Prepend context path to all jQuery AJAX requests
+$.ajaxPrefilter(function( options, originalOptions, jqXHR ) {
+   if (!options.crossDomain) {
+       options.url = _ctx + options.url;
+   }
+});
+  </script>
 </html> 

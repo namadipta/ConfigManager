@@ -27,8 +27,6 @@ public class LabelDetailsServicePojo implements Serializable {
 
 	private Long labelId;
 
-	private Long appId;
-
 	private String labelDisplayName;
 
 	private String labelName;

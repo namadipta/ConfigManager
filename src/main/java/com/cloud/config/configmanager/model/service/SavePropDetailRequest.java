@@ -31,7 +31,7 @@ public class SavePropDetailRequest implements Serializable {
 
 	private String selectedModule;
 
-	private String appId;
+//	private String appId;
 
 	private String propVersion;
 }

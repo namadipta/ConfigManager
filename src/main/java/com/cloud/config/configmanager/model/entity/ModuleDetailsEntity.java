@@ -43,7 +43,4 @@ public class ModuleDetailsEntity {
 	@CreationTimestamp
 	private ZonedDateTime addedDate;
 
-	@Column(name = "app_id")
-	private Long appId;
-
 }

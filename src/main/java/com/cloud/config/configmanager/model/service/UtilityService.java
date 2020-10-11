@@ -38,26 +38,23 @@ public class UtilityService {
 	@Autowired
 	private HomePageService homePageService;
 
-	public AppDisplayDetails getAppDetailsFromCache(String appId) {
+	public AppDisplayDetails getAppDetailsFromCache() {
 
-		AppDisplayDetails appDisplayDetails = getAppDetailsFromDB(appId);
+		AppDisplayDetails appDisplayDetails = getAppDetailsFromDB();
 		return appDisplayDetails;
 	}
 
 	/**
 	 * @param appId
 	 */
-	private AppDisplayDetails getAppDetailsFromDB(String appId) {
+	private AppDisplayDetails getAppDetailsFromDB(String... appId) {
 		AppDisplayDetails appDisplayDetails = new AppDisplayDetails();
-		if (StringUtils.isNotBlank(appId)) {
-			List<LabelDetailsServicePojo> labelDetails = labelDetailsService.fetchAllEnvForAppID(Long.parseLong(appId));
-			appDisplayDetails.setListOflabels(homePageService.convertEnvDetailsForDropDown(labelDetails));
-			List<ModuleDetailsServicePojo> moduleDetails = moduleDetailsService
-					.fetchAllModuleForAppID(Long.parseLong(appId));
-			appDisplayDetails.setListOfModules(homePageService.convertModuleDetailsForDropDown(moduleDetails));
-			List<ProfDetailsServicePojo> profDetails = profDetailsService.fetchAllProfForAppId(Long.parseLong(appId));
-			appDisplayDetails.setListOfProfs(homePageService.convertProfDetailsForDropDown(profDetails));
-		}
+		List<LabelDetailsServicePojo> labelDetails = labelDetailsService.fetchAllEnvForAppID();
+		appDisplayDetails.setListOflabels(homePageService.convertEnvDetailsForDropDown(labelDetails));
+		List<ModuleDetailsServicePojo> moduleDetails = moduleDetailsService.fetchAllModuleForAppID();
+		appDisplayDetails.setListOfModules(homePageService.convertModuleDetailsForDropDown(moduleDetails));
+		List<ProfDetailsServicePojo> profDetails = profDetailsService.fetchAllProfForAppId();
+		appDisplayDetails.setListOfProfs(homePageService.convertProfDetailsForDropDown(profDetails));
 
 		return appDisplayDetails;
 	}

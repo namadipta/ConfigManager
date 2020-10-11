@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cloud.config.configmanager.model.common.DropdownValue;
 import com.cloud.config.configmanager.model.display.AppDisplayDetails;
-import com.cloud.config.configmanager.model.display.AppsDisplayRequest;
 import com.cloud.config.configmanager.model.display.ComparePropPojo;
 import com.cloud.config.configmanager.model.service.CompareService;
 import com.cloud.config.configmanager.model.service.UtilityService;
@@ -46,11 +45,9 @@ public class CompareController {
 	 * @return
 	 */
 	@PostMapping(value = "/loadcomparepage")
-	public String loadCompareDetails(ModelMap model, @ModelAttribute("appId") AppsDisplayRequest selectedAppRequest) {
-		String selectedAppId = selectedAppRequest.getAppId();
+	public String loadCompareDetails(ModelMap model) {
 
-		model.addAttribute("appDisplayDetails", utilityService.getAppDetailsFromCache(selectedAppId));
-		model.addAttribute("appId", selectedAppId);
+		model.addAttribute("appDisplayDetails", utilityService.getAppDetailsFromCache());
 		model.addAttribute("comparepage", "true");
 		model.addAttribute("compareprops", new ComparePropPojo());
 		model.addAttribute("selectedAppRequest", new AppDisplayDetails());
@@ -60,23 +57,24 @@ public class CompareController {
 	}
 
 	@PostMapping(value = "/compareprops")
-	public String compareProperties(ModelMap model, @ModelAttribute ComparePropPojo compareRequest)
+	public String compareProperties(ModelMap model, @ModelAttribute ComparePropPojo compareRequest,
+			@ModelAttribute("appDisplayDetails") AppDisplayDetails selectedAppRequest)
 			throws JsonMappingException, JsonProcessingException {
-		String selectedAppId = compareRequest.getAppId();
-		AppDisplayDetails appDisplayDetails = utilityService.getAppDetailsFromCache(selectedAppId);
-		appDisplayDetails.setListOfSourcePropVersion(propDetailsService.fetchAllPropVersion(compareRequest.getAppId(),
-				compareRequest.getSourceSelectedModule(), compareRequest.getSourceSelectedProfile(),
-				compareRequest.getSourceSelectedLabel()));
-		appDisplayDetails.setListOfTargetPropVersion(propDetailsService.fetchAllPropVersion(compareRequest.getAppId(),
-				compareRequest.getTargetSelectedModule(), compareRequest.getTargetSelectedProfile(),
-				compareRequest.getTargetSelectedLabel()));
+		AppDisplayDetails appDisplayDetails = utilityService.getAppDetailsFromCache();
+		appDisplayDetails.setListOfSourcePropVersion(
+				propDetailsService.fetchAllPropVersion(compareRequest.getSourceSelectedModule(),
+						compareRequest.getSourceSelectedProfile(), compareRequest.getSourceSelectedLabel()));
+		appDisplayDetails.setListOfTargetPropVersion(
+				propDetailsService.fetchAllPropVersion(compareRequest.getTargetSelectedModule(),
+						compareRequest.getTargetSelectedProfile(), compareRequest.getTargetSelectedLabel()));
 
 		model.addAttribute("appDisplayDetails", appDisplayDetails);
-		model.addAttribute("appId", selectedAppId);
 		model.addAttribute("comparepage", "true");
 		model.addAttribute("compareprops", compareRequest);
 		model.addAttribute("compareResponse", compareService.compareProps(compareRequest));
 		model.addAttribute("content", "comparePropDetails");
+		model.addAttribute("selectedAppRequest", selectedAppRequest);
+
 		return "configHome";
 	}
 
@@ -86,9 +84,8 @@ public class CompareController {
 	 * @return
 	 */
 	@GetMapping(value = "/fetchpropversion")
-	public @ResponseBody List<DropdownValue> fetchpropversion(@RequestParam String appId,
-			@RequestParam String selectedModule, @RequestParam String selectedProfile,
-			@RequestParam String selectedLabel) {
-		return propDetailsService.fetchAllPropVersion(appId, selectedModule, selectedProfile, selectedLabel);
+	public @ResponseBody List<DropdownValue> fetchpropversion(@RequestParam String selectedModule,
+			@RequestParam String selectedProfile, @RequestParam String selectedLabel) {
+		return propDetailsService.fetchAllPropVersion(selectedModule, selectedProfile, selectedLabel);
 	}
 }

@@ -44,13 +44,12 @@ public class CompareService {
 	public CompareDetailsResponse compareProps(ComparePropPojo compareRequest)
 			throws JsonMappingException, JsonProcessingException {
 		CompareDetailsResponse response = new CompareDetailsResponse();
-		PropDetailsEntity sourceProps = propDetailsService.fetchPropDetails(compareRequest.getAppId(),
-				compareRequest.getSourceSelectedModule(), compareRequest.getSourceSelectedProfile(),
-				compareRequest.getSourceSelectedLabel(), compareRequest.getSourceSelectedPropVersion());
-
-		PropDetailsEntity targetProps = propDetailsService.fetchPropDetails(compareRequest.getAppId(),
-				compareRequest.getTargetSelectedModule(), compareRequest.getTargetSelectedProfile(),
-				compareRequest.getTargetSelectedLabel(), compareRequest.getTargetSelectedPropVersion());
+		PropDetailsEntity sourceProps = propDetailsService.fetchPropDetails(compareRequest.getSourceSelectedModule(),
+				compareRequest.getSourceSelectedProfile(), compareRequest.getSourceSelectedLabel(),
+				compareRequest.getSourceSelectedPropVersion());
+		PropDetailsEntity targetProps = propDetailsService.fetchPropDetails(compareRequest.getTargetSelectedModule(),
+				compareRequest.getTargetSelectedProfile(), compareRequest.getTargetSelectedLabel(),
+				compareRequest.getTargetSelectedPropVersion());
 
 		if (Objects.nonNull(sourceProps) && StringUtils.isNotBlank(sourceProps.getPropData())) {
 			final Map<String, PropDataPojo> sourcePropsData = (Map<String, PropDataPojo>) MAPPER

@@ -29,10 +29,10 @@ public class PropDetailsServicePojo implements Serializable {
 
 	private Long propId;
 
-	private Long appId;
+	// private Long appId;
 
 	private Long propVersion;
-	
+
 	private Long labelId;
 
 	private Long profId;

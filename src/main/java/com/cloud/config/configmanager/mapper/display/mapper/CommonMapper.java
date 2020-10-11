@@ -12,7 +12,6 @@ import org.mapstruct.Mappings;
 import org.mapstruct.NullValueMappingStrategy;
 
 import com.cloud.config.configmanager.model.common.DropdownValue;
-import com.cloud.config.configmanager.model.service.AppDetailsServicePojo;
 import com.cloud.config.configmanager.model.service.LabelDetailsServicePojo;
 import com.cloud.config.configmanager.model.service.ModuleDetailsServicePojo;
 import com.cloud.config.configmanager.model.service.ProfDetailsServicePojo;
@@ -24,15 +23,15 @@ import com.cloud.config.configmanager.model.service.ProfDetailsServicePojo;
 @Mapper(componentModel = "spring")
 public interface CommonMapper {
 
-	/**
-	 * @param appDetails
-	 * @return
-	 */
-	@IterableMapping(nullValueMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT)
-	List<DropdownValue> mapForDropdown(List<AppDetailsServicePojo> appDetails);
-
-	@Mappings({ @Mapping(source = "appId", target = "id"), @Mapping(source = "appName", target = "text") })
-	DropdownValue mapForDropdowns(AppDetailsServicePojo appDetails);
+//	/**
+//	 * @param appDetails
+//	 * @return
+//	 */
+//	@IterableMapping(nullValueMappingStrategy = NullValueMappingStrategy.RETURN_DEFAULT)
+//	List<DropdownValue> mapForDropdown(List<AppDetailsServicePojo> appDetails);
+//
+//	@Mappings({ @Mapping(source = "appId", target = "id"), @Mapping(source = "appName", target = "text") })
+//	DropdownValue mapForDropdowns(AppDetailsServicePojo appDetails);
 
 	/**
 	 * @param envDetails

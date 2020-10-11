@@ -31,9 +31,6 @@ public class PropDetailsEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long propId;
 
-	@Column(name = "app_id")
-	private Long appId;
-
 	@Column(name = "prop_version")
 	private Long propVersion;
 

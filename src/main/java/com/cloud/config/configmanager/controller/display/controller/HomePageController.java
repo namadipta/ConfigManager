@@ -16,13 +16,11 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.cloud.config.configmanager.model.display.AppDisplayDetails;
-import com.cloud.config.configmanager.model.display.AppsDisplayRequest;
 import com.cloud.config.configmanager.model.service.PropDetailsServicePojo;
 import com.cloud.config.configmanager.model.service.PropDetailsServiceResponse;
 import com.cloud.config.configmanager.model.service.PropertyPojo;
 import com.cloud.config.configmanager.model.service.SavePropDetailRequest;
 import com.cloud.config.configmanager.model.service.UtilityService;
-import com.cloud.config.configmanager.service.AppDetailsService;
 import com.cloud.config.configmanager.service.PropDetailsService;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.JsonMappingException;
@@ -36,8 +34,8 @@ import io.micrometer.core.instrument.util.StringUtils;
 @Controller
 public class HomePageController {
 
-	@Autowired
-	private AppDetailsService appDetailsService;
+//	@Autowired
+//	private AppDetailsService appDetailsService;
 
 	@Autowired
 	private UtilityService utilityService;
@@ -64,11 +62,10 @@ public class HomePageController {
 	 * @return
 	 */
 	@GetMapping(value = "/appdetails")
-	public String loadAppDetails(ModelMap model, @ModelAttribute("appId") AppsDisplayRequest selectedAppRequest) {
-		String selectedAppId = selectedAppRequest.getAppId();
+	public String loadAppDetails(ModelMap model) {
 
-		model.addAttribute("appDisplayDetails", utilityService.getAppDetailsFromCache(selectedAppId));
-		model.addAttribute("appId", selectedAppId);
+		model.addAttribute("appDisplayDetails", utilityService.getAppDetailsFromCache());
+		
 		model.addAttribute("content", "propdetails");
 		model.addAttribute("propDetails", null);
 		model.addAttribute("selectedAppRequest", new AppDisplayDetails());
@@ -83,10 +80,8 @@ public class HomePageController {
 	 */
 	@PostMapping(value = "/loadmodule")
 	public String loadmodule(ModelMap model, @ModelAttribute AppDisplayDetails selectedAppRequest) {
-		String selectedAppId = selectedAppRequest.getAppId();
 
-		model.addAttribute("appDisplayDetails", utilityService.getAppDetailsFromCache(selectedAppId));
-		model.addAttribute("appId", selectedAppId);
+		model.addAttribute("appDisplayDetails", utilityService.getAppDetailsFromCache());
 		model.addAttribute("content", "propdetails");
 		model.addAttribute("propDetails", null);
 		if (Objects.nonNull(selectedAppRequest) && StringUtils.isNotBlank(selectedAppRequest.getModuleId())) {
@@ -114,7 +109,6 @@ public class HomePageController {
 		request.setProfId(Long.parseLong(selectedAppRequest.getSelectedProfile()));
 		request.setLabelId(Long.parseLong(selectedAppRequest.getSelectedLabel()));
 		request.setModId(Long.parseLong(selectedAppRequest.getSelectedModule()));
-		request.setAppId(Long.parseLong(selectedAppRequest.getAppId()));
 
 		PropDetailsServicePojo selectedPropDetails = propDetailsService.fetchLatestPropDetails(request);
 
@@ -131,8 +125,7 @@ public class HomePageController {
 		}
 
 		model.addAttribute("saveProperties", savePropDetailRequest);
-		model.addAttribute("appDisplayDetails", utilityService.getAppDetailsFromCache(selectedAppRequest.getAppId()));
-		model.addAttribute("appId", selectedAppRequest.getAppId());
+		model.addAttribute("appDisplayDetails", utilityService.getAppDetailsFromCache());
 		model.addAttribute("selectedAppRequest", selectedAppRequest);
 		model.addAttribute("content", "propdetails");
 		model.addAttribute("appdetails", "true");
@@ -158,9 +151,9 @@ public class HomePageController {
 		SavePropDetailRequest savePropDetailRequest = new SavePropDetailRequest();
 		savePropDetailRequest.setSavePropDetails(propDetailsService.processProperties(savePropDetails));
 		model.addAttribute("saveProperties", savePropDetailRequest);
-		model.addAttribute("appDisplayDetails", utilityService.getAppDetailsFromCache(properties.getAppId()));
-		AppDisplayDetails selectedAppRequest = appDetailsService.prepareSelectedAppRequest(properties);
-		model.addAttribute("selectedAppRequest", selectedAppRequest);
+		model.addAttribute("appDisplayDetails", utilityService.getAppDetailsFromCache());
+//		AppDisplayDetails selectedAppRequest = appDetailsService.prepareSelectedAppRequest(properties);
+//		model.addAttribute("selectedAppRequest", selectedAppRequest);
 		model.addAttribute("content", "propdetails");
 		model.addAttribute("appdetails", "true");
 		return "configHome";

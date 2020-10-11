@@ -24,7 +24,7 @@ public class UserAccessResponse implements Serializable {
 	*/
 	private static final long serialVersionUID = 7813866113522376834L;
 
-	private String email;
+	private String name;
 
 	private Boolean viewAccess;
 

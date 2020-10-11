@@ -24,7 +24,7 @@ public interface PropDetailsRepo extends JpaRepository<PropDetailsEntity, Long> 
 	 * @param profId
 	 * @return
 	 */
-	PropDetailsEntity findFirstByAppIdAndModIdAndLabelIdAndProfIdOrderByPropVersionDesc(Long appId, Long modId,
+	PropDetailsEntity findFirstByModIdAndLabelIdAndProfIdOrderByPropVersionDesc( Long modId,
 			Long labelId, Long profId);
 
 	/**
@@ -35,7 +35,7 @@ public interface PropDetailsRepo extends JpaRepository<PropDetailsEntity, Long> 
 	 * @param propVersion
 	 * @return
 	 */
-	PropDetailsEntity findFirstByAppIdAndModIdAndLabelIdAndProfIdAndPropVersion(Long appId, Long modId, Long labelId,
+	PropDetailsEntity findFirstByModIdAndLabelIdAndProfIdAndPropVersion(Long modId, Long labelId,
 			Long profId, Long propVersion);
 
 	/**
@@ -45,7 +45,7 @@ public interface PropDetailsRepo extends JpaRepository<PropDetailsEntity, Long> 
 	 * @param parseLong4
 	 * @return
 	 */
-	List<PropDetailsEntity> findAllByAppIdAndModIdAndLabelIdAndProfIdOrderByPropVersionDesc(long appId,
+	List<PropDetailsEntity> findAllByModIdAndLabelIdAndProfIdOrderByPropVersionDesc(
 			long selectedModule, long selectedProfile, long selectedLabel);
 
 }

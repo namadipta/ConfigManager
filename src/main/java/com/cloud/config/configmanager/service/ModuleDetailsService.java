@@ -33,8 +33,8 @@ public class ModuleDetailsService {
 	 * @param request
 	 * @return
 	 */
-	public List<ModuleDetailsServicePojo> fetchAllModuleForAppID(final Long appId) {
-		List<ModuleDetailsEntity> moduleDetails = moduleDetailsRepo.findByAppId(appId);
+	public List<ModuleDetailsServicePojo> fetchAllModuleForAppID() {
+		List<ModuleDetailsEntity> moduleDetails = moduleDetailsRepo.findAll();
 		return moduleDetailsMapper.map(moduleDetails);
 	}
 

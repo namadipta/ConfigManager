@@ -27,7 +27,7 @@ $('.compareSource').change(function(e) {
 	 $.ajax({
 	        type: "GET",
 	        contentType: "application/json",
-	        url: "/fetchpropversion?selectedModule=" + $('#sourceSelectedModule').val() + '&selectedProfile='+$('#sourceSelectedProfile').val() + '&selectedLabel='+$('#sourceSelectedLabel').val() + '&appId='+$('#appId').val(),
+	        url: "/fetchpropversion?selectedModule=" + $('#sourceSelectedModule').val() + '&selectedProfile='+$('#sourceSelectedProfile').val() + '&selectedLabel='+$('#sourceSelectedLabel').val(),
 	        dataType: 'json',
 	        success: function (data) {
 
@@ -61,7 +61,7 @@ $('.compareTarget').change(function(e) {
 	  $.ajax({
 		  	type: "GET",
 	        contentType: "application/json",
-	        url: "/fetchpropversion?selectedModule=" + $('#targetSelectedModule').val() + '&selectedProfile='+$('#targetSelectedProfile').val() + '&selectedLabel='+$('#targetSelectedLabel').val() + '&appId='+$('#appId').val(),
+	        url: "/fetchpropversion?selectedModule=" + $('#targetSelectedModule').val() + '&selectedProfile='+$('#targetSelectedProfile').val() + '&selectedLabel='+$('#targetSelectedLabel').val(),
 	        dataType: 'json',
 	        success: function (data) {
 

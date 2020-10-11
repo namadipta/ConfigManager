@@ -30,9 +30,6 @@ public class ProfDetailsEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long profId;
 
-	@Column(name = "app_id")
-	private Long appId;
-
 	@Column(name = "prof_display_name")
 	private String profDisplayName;
 

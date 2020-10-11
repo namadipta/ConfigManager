@@ -30,9 +30,6 @@ public class LabelDetailsEntity {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long labelId;
 
-	@Column(name = "app_id")
-	private Long appId;
-
 	@Column(name = "label_display_name")
 	private String labelDisplayName;
 
