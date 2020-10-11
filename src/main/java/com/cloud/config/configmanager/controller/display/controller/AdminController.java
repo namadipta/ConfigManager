@@ -38,7 +38,7 @@ public class AdminController {
 		allUserAccessDetailsPojo.setListOfUser(userAccessService.findAll());
 		model.addAttribute("allUserAccess", allUserAccessDetailsPojo);
 		model.addAttribute("selectedAppRequest", new AppDisplayDetails());
-		model.addAttribute("content", "allUserAccess");
+		model.addAttribute("content", "allUserAccess.html");
 		return "configHome.html";
 	}
 
@@ -55,7 +55,7 @@ public class AdminController {
 		allUserAccessDetailsPojo.setListOfUser(userAccessService.findAll());
 		model.addAttribute("allUserAccess", allUserAccessDetailsPojo);
 		model.addAttribute("selectedAppRequest", new AppDisplayDetails());
-		model.addAttribute("content", "allUserAccess");
+		model.addAttribute("content", "allUserAccess.html");
 		return "configHome.html";
 	}
 }

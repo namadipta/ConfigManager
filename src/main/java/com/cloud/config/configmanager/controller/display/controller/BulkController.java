@@ -53,7 +53,7 @@ public class BulkController {
 		model.addAttribute("appDisplayDetails", utilityService.getAppDetailsFromCache());
 		model.addAttribute("selectedAppRequest", selectedAppRequest);
 		model.addAttribute("bulkpage", "true");
-		model.addAttribute("content", "propDetails");
+		model.addAttribute("content", "propDetails.html");
 		SavePropDetailRequest savePropDetailRequest = new SavePropDetailRequest();
 		savePropDetailRequest.setSavePropDetails(Arrays.asList(new PropertyPojo()));
 		model.addAttribute("saveProperties", savePropDetailRequest);
@@ -87,7 +87,7 @@ public class BulkController {
 		model.addAttribute("saveProperties", savePropDetailRequest);
 		model.addAttribute("appDisplayDetails", utilityService.getAppDetailsFromCache());
 		model.addAttribute("selectedAppRequest", selectedAppRequest);
-		model.addAttribute("content", "propDetails");
+		model.addAttribute("content", "propDetails.html");
 		model.addAttribute("bulkpage", "true");
 		model.addAttribute("appdetails", "true");
 		return "configHome.html";

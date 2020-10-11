@@ -40,7 +40,7 @@ public class ModuleController {
 		model.addAttribute("appDisplayDetails", utilityService.getAppDetailsFromCache());
 		model.addAttribute("addmodule", new ModuleDisplayDetails());
 		model.addAttribute("selectedAppRequest", new AppDisplayDetails());
-		model.addAttribute("content", "addModule");
+		model.addAttribute("content", "addModule.html");
 		return "configHome.html";
 	}
 
@@ -55,7 +55,7 @@ public class ModuleController {
 		model.addAttribute("addmodule", new ModuleDisplayDetails());
 		model.addAttribute("selectedAppRequest", new AppDisplayDetails());
 		model.addAttribute("appDisplayDetails", utilityService.getAppDetailsFromCache());
-		model.addAttribute("content", "addModule");
+		model.addAttribute("content", "addModule.html");
 		return "configHome.html";
 	}
 }
