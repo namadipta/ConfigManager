@@ -23,11 +23,9 @@
       <div class="container-fluid page-body-wrapper">
          <div th:replace="fragments/sidebar.html :: sidebar"></div>
          <div class="main-panel" style="width: 81%; height: 100%;">
-         <th:block th:if="${bulkpage == null && comparepage == null && appdetails == 'true'}">
-        <div  th:replace="fragments/appdetails.html :: appdetails"></div>
-        </th:block>
-        <div  th:replace="${bulkpage == 'true'} ? ~${fragments/bulkupload.html :: bulkupload}: ~{}"></div>
-         <div  th:replace="${comparepage == 'true'} ? ~${fragments/comparepage.html :: comparepage}: ~{}"></div>
+        <div  th:replace="${bulkpage == null && comparepage == null && appdetails == 'true'} ? ~{fragments/appdetails.html :: appdetails}: ~{}"></div>
+        <div  th:replace="${bulkpage == 'true'} ? ~{fragments/bulkupload.html :: bulkupload}: ~{}"></div>
+         <div  th:replace="${comparepage == 'true'} ? ~{fragments/comparepage.html :: comparepage}: ~{}"></div>
         
           <div class="content-wrapper" th:replace="@{'views/' + ${content}} :: ${content}"></div>
 
