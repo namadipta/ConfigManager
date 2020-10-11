@@ -63,7 +63,7 @@ public class HomePageController {
 
 		model.addAttribute("appDisplayDetails", utilityService.getAppDetailsFromCache());
 
-		model.addAttribute("content", "propdetails");
+		model.addAttribute("content", "propDetails");
 		model.addAttribute("propDetails", null);
 		model.addAttribute("selectedAppRequest", new AppDisplayDetails());
 		model.addAttribute("appdetails", "true");
@@ -79,7 +79,7 @@ public class HomePageController {
 	public String loadmodule(ModelMap model, @ModelAttribute AppDisplayDetails selectedAppRequest) {
 
 		model.addAttribute("appDisplayDetails", utilityService.getAppDetailsFromCache());
-		model.addAttribute("content", "propdetails");
+		model.addAttribute("content", "propDetails");
 		model.addAttribute("propDetails", null);
 		if (Objects.nonNull(selectedAppRequest) && StringUtils.isNotBlank(selectedAppRequest.getModuleId())) {
 			selectedAppRequest.setSelectedModule(selectedAppRequest.getModuleId());
@@ -124,7 +124,7 @@ public class HomePageController {
 		model.addAttribute("saveProperties", savePropDetailRequest);
 		model.addAttribute("appDisplayDetails", utilityService.getAppDetailsFromCache());
 		model.addAttribute("selectedAppRequest", selectedAppRequest);
-		model.addAttribute("content", "propdetails");
+		model.addAttribute("content", "propDetails");
 		model.addAttribute("appdetails", "true");
 		return "configHome.html";
 	}
@@ -151,7 +151,7 @@ public class HomePageController {
 		model.addAttribute("appDisplayDetails", utilityService.getAppDetailsFromCache());
 		AppDisplayDetails selectedAppRequest = propDetailsService.prepareSelectedAppRequest(properties);
 		model.addAttribute("selectedAppRequest", selectedAppRequest);
-		model.addAttribute("content", "propdetails");
+		model.addAttribute("content", "propDetails");
 		model.addAttribute("appdetails", "true");
 		return "configHome.html";
 	}
