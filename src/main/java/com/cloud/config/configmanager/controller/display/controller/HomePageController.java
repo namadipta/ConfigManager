@@ -67,7 +67,7 @@ public class HomePageController {
 		model.addAttribute("propDetails", null);
 		model.addAttribute("selectedAppRequest", new AppDisplayDetails());
 		model.addAttribute("appdetails", "true");
-		return "configHome";
+		return "configHome.html";
 	}
 
 	/**
@@ -86,7 +86,7 @@ public class HomePageController {
 		}
 		model.addAttribute("selectedAppRequest", selectedAppRequest);
 		model.addAttribute("appdetails", "true");
-		return "configHome";
+		return "configHome.html";
 	}
 
 	/**
@@ -126,7 +126,7 @@ public class HomePageController {
 		model.addAttribute("selectedAppRequest", selectedAppRequest);
 		model.addAttribute("content", "propdetails");
 		model.addAttribute("appdetails", "true");
-		return "configHome";
+		return "configHome.html";
 	}
 
 	/**
@@ -153,6 +153,6 @@ public class HomePageController {
 		model.addAttribute("selectedAppRequest", selectedAppRequest);
 		model.addAttribute("content", "propdetails");
 		model.addAttribute("appdetails", "true");
-		return "configHome";
+		return "configHome.html";
 	}
 }

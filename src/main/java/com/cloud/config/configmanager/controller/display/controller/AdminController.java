@@ -39,7 +39,7 @@ public class AdminController {
 		model.addAttribute("allUserAccess", allUserAccessDetailsPojo);
 		model.addAttribute("selectedAppRequest", new AppDisplayDetails());
 		model.addAttribute("content", "allUserAccess");
-		return "configHome";
+		return "configHome.html";
 	}
 
 	/**
@@ -56,6 +56,6 @@ public class AdminController {
 		model.addAttribute("allUserAccess", allUserAccessDetailsPojo);
 		model.addAttribute("selectedAppRequest", new AppDisplayDetails());
 		model.addAttribute("content", "allUserAccess");
-		return "configHome";
+		return "configHome.html";
 	}
 }

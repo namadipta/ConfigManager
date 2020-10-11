@@ -41,7 +41,7 @@ public class ModuleController {
 		model.addAttribute("addmodule", new ModuleDisplayDetails());
 		model.addAttribute("selectedAppRequest", new AppDisplayDetails());
 		model.addAttribute("content", "addModule");
-		return "configHome";
+		return "configHome.html";
 	}
 
 	/**
@@ -56,6 +56,6 @@ public class ModuleController {
 		model.addAttribute("selectedAppRequest", new AppDisplayDetails());
 		model.addAttribute("appDisplayDetails", utilityService.getAppDetailsFromCache());
 		model.addAttribute("content", "addModule");
-		return "configHome";
+		return "configHome.html";
 	}
 }

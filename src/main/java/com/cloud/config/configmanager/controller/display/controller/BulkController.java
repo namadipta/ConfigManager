@@ -58,7 +58,7 @@ public class BulkController {
 		savePropDetailRequest.setSavePropDetails(Arrays.asList(new PropertyPojo()));
 		model.addAttribute("saveProperties", savePropDetailRequest);
 		model.addAttribute("appdetails", "true");
-		return "configHome";
+		return "configHome.html";
 	}
 
 	/**
@@ -90,6 +90,6 @@ public class BulkController {
 		model.addAttribute("content", "propdetails");
 		model.addAttribute("bulkpage", "true");
 		model.addAttribute("appdetails", "true");
-		return "configHome";
+		return "configHome.html";
 	}
 }

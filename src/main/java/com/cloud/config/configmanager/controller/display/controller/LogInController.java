@@ -31,7 +31,7 @@ public class LogInController {
 	@GetMapping("/")
 	public String login(ModelMap model, HttpSession session, HttpServletRequest request) {
 		
-		return "login";
+		return "login.html";
 	}
 
 //	/**
@@ -56,7 +56,7 @@ public class LogInController {
 		res.setHeader("Pragma", "no-cache");
 		res.setDateHeader("Expires", 0);
 		handleLogOutResponse(request, res);
-		return "logout";
+		return "logout.html";
 	}
 
 	private void handleLogOutResponse(HttpServletRequest request, HttpServletResponse response) {
@@ -74,6 +74,6 @@ public class LogInController {
 	 */
 	@GetMapping("/error")
 	public String error() {
-		return "error-404";
+		return "error-404.html";
 	}
 }
