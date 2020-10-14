@@ -7,8 +7,11 @@ import java.util.List;
 
 import org.mapstruct.IterableMapping;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
 import org.mapstruct.NullValueMappingStrategy;
 
+import com.cloud.config.configmanager.model.display.AddConfigDetails;
 import com.cloud.config.configmanager.model.entity.ProfDetailsEntity;
 import com.cloud.config.configmanager.model.service.ProfDetailsServicePojo;
 
@@ -31,5 +34,13 @@ public interface ProfDetailsMapper {
 	 * @return
 	 */
 	ProfDetailsEntity saveMap(ProfDetailsServicePojo request);
+
+	/**
+	 * @param request
+	 * @return
+	 */
+	@Mappings({ @Mapping(target = "profDisplayName", source = "displayName"),
+			@Mapping(target = "profName", source = "name") })
+	ProfDetailsServicePojo mapper(AddConfigDetails request);
 
 }

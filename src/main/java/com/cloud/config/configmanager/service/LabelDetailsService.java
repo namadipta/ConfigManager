@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cloud.config.configmanager.mapper.LabelDetailsMapper;
+import com.cloud.config.configmanager.model.display.AddConfigDetails;
 import com.cloud.config.configmanager.model.entity.LabelDetailsEntity;
 import com.cloud.config.configmanager.model.service.LabelDetailsServicePojo;
 import com.cloud.config.configmanager.repo.LabelDetailsRepo;
@@ -49,4 +50,10 @@ public class LabelDetailsService {
 		return savedData.getLabelId().toString();
 	}
 
+	/**
+	 * @param request
+	 */
+	public String saveEnv(AddConfigDetails request) {
+		return saveEnv(envDetailsMapper.mapper(request));
+	}
 }

@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.cloud.config.configmanager.mapper.ModuleDetailsMapper;
-import com.cloud.config.configmanager.model.display.ModuleDisplayDetails;
+import com.cloud.config.configmanager.model.display.AddConfigDetails;
 import com.cloud.config.configmanager.model.entity.ModuleDetailsEntity;
 import com.cloud.config.configmanager.model.service.ModuleDetailsServicePojo;
 import com.cloud.config.configmanager.repo.ModuleDetailsRepo;
@@ -44,7 +44,7 @@ public class ModuleDetailsService {
 	 * @param request
 	 * @return
 	 */
-	public String saveModule(final ModuleDisplayDetails request) {
+	public String saveModule(final AddConfigDetails request) {
 		final ModuleDetailsServicePojo serviceRequest = moduleDetailsMapper.map(request);
 		return this.saveModule(serviceRequest);
 	}

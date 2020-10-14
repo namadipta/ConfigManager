@@ -12,15 +12,17 @@ import lombok.Data;
  *
  */
 @Data
-public class ModuleDisplayDetails implements Serializable {
+public class AddConfigDetails implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -4203146424080937134L;
 
-	private String moduleName;
+	private String name;
 
-	private String moduleDisplayName;
+	private String displayName;
+
+	private String configType;
 
 }

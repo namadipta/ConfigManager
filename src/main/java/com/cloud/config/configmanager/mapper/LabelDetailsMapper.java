@@ -7,8 +7,11 @@ import java.util.List;
 
 import org.mapstruct.IterableMapping;
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.Mappings;
 import org.mapstruct.NullValueMappingStrategy;
 
+import com.cloud.config.configmanager.model.display.AddConfigDetails;
 import com.cloud.config.configmanager.model.entity.LabelDetailsEntity;
 import com.cloud.config.configmanager.model.service.LabelDetailsServicePojo;
 
@@ -31,5 +34,13 @@ public interface LabelDetailsMapper {
 	 * @return
 	 */
 	LabelDetailsEntity saveMap(LabelDetailsServicePojo request);
+
+	/**
+	 * @param request
+	 * @return
+	 */
+	@Mappings({ @Mapping(target = "labelDisplayName", source = "displayName"),
+			@Mapping(target = "labelName", source = "name") })
+	LabelDetailsServicePojo mapper(AddConfigDetails request);
 
 }

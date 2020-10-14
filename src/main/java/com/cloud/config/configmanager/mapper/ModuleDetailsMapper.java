@@ -9,7 +9,7 @@ import org.mapstruct.IterableMapping;
 import org.mapstruct.Mapper;
 import org.mapstruct.NullValueMappingStrategy;
 
-import com.cloud.config.configmanager.model.display.ModuleDisplayDetails;
+import com.cloud.config.configmanager.model.display.AddConfigDetails;
 import com.cloud.config.configmanager.model.entity.ModuleDetailsEntity;
 import com.cloud.config.configmanager.model.service.ModuleDetailsServicePojo;
 
@@ -38,6 +38,6 @@ public interface ModuleDetailsMapper {
 	 * @param request
 	 * @return
 	 */
-	ModuleDetailsServicePojo map(ModuleDisplayDetails request);
+	ModuleDetailsServicePojo map(AddConfigDetails request);
 
 }

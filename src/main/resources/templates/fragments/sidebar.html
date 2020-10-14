@@ -24,10 +24,10 @@
 		</form>
 		</li>
 		<li class="nav-item" th:if="${session.user.role == 'ADMIN'}" th:unless="${session == null}">
-		<form  th:action="@{/loadaddmodule}"  method="POST"  >
+		<form  th:action="@{/loadaddconfig}"  method="POST"  >
 		<button class="nav-link " type="submit" style="background: linear-gradient(to top, #2196f3, #2196f3);border: none;width: 100%;"> <i
 				class="menu-icon typcn typcn-document-text"></i> <span
-				class="menu-title" th:value="addmodule" th:id="addmodule" >Add Module</span>
+				class="menu-title" th:value="addmodule" th:id="addmodule" >Add Configuration</span>
 		</button>
 		</form>
 		</li>

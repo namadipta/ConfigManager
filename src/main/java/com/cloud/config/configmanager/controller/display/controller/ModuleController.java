@@ -3,15 +3,20 @@
  */
 package com.cloud.config.configmanager.controller.display.controller;
 
+import java.util.Objects;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.cloud.config.configmanager.model.display.AddConfigDetails;
 import com.cloud.config.configmanager.model.display.AppDisplayDetails;
-import com.cloud.config.configmanager.model.display.ModuleDisplayDetails;
 import com.cloud.config.configmanager.model.service.UtilityService;
+import com.cloud.config.configmanager.service.LabelDetailsService;
 import com.cloud.config.configmanager.service.ModuleDetailsService;
+import com.cloud.config.configmanager.service.ProfDetailsService;
 
 /**
  * @author namadipta
@@ -26,6 +31,12 @@ public class ModuleController {
 	@Autowired
 	private ModuleDetailsService moduleDetailsService;
 
+	@Autowired
+	private ProfDetailsService profDetailsService;
+
+	@Autowired
+	private LabelDetailsService labelDetailsService;
+
 	/**
 	 * @param model
 	 * @return
@@ -34,13 +45,13 @@ public class ModuleController {
 	 * @param model
 	 * @return
 	 */
-	@PostMapping(value = "/loadaddmodule")
+	@PostMapping(value = "/loadaddconfig")
 	public String loadaddmodule(ModelMap model) {
 
 		model.addAttribute("appDisplayDetails", utilityService.getAppDetailsFromCache());
-		model.addAttribute("addmodule", new ModuleDisplayDetails());
+		model.addAttribute("addconfig", new AddConfigDetails());
 		model.addAttribute("selectedAppRequest", new AppDisplayDetails());
-		model.addAttribute("content", "addModule");
+		model.addAttribute("content", "addConfig");
 		return "configHome.html";
 	}
 
@@ -49,13 +60,22 @@ public class ModuleController {
 	 * @param addModule
 	 * @return
 	 */
-	@PostMapping(value = "/addmodule")
-	public String addmodule(ModelMap model, @Autowired ModuleDisplayDetails addModule) {
-		moduleDetailsService.saveModule(addModule);
-		model.addAttribute("addmodule", new ModuleDisplayDetails());
+	@PostMapping(value = "/addconfig")
+	public String addmodule(ModelMap model, @Autowired AddConfigDetails request) {
+		if (Objects.nonNull(request)) {
+			if (StringUtils.equalsIgnoreCase(request.getConfigType(), "module")) {
+				moduleDetailsService.saveModule(request);
+			} else if (StringUtils.equalsIgnoreCase(request.getConfigType(), "label")) {
+				labelDetailsService.saveEnv(request);
+			} else if (StringUtils.equalsIgnoreCase(request.getConfigType(), "profile")) {
+				profDetailsService.saveProf(request);
+			}
+		}
+
+		model.addAttribute("addconfig", new AddConfigDetails());
 		model.addAttribute("selectedAppRequest", new AppDisplayDetails());
 		model.addAttribute("appDisplayDetails", utilityService.getAppDetailsFromCache());
-		model.addAttribute("content", "addModule");
+		model.addAttribute("content", "addConfig");
 		return "configHome.html";
 	}
 }
