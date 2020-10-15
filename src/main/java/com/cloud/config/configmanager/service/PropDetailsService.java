@@ -307,7 +307,13 @@ public class PropDetailsService {
 	public PropDetailsServiceResponse fetchLatestPropVersion(AppDisplayDetails selectedAppRequest) {
 		PropDetailsEntity latestPropDetails = findFirstByModIdAndLabelIdAndProfIdOrderByPropVersionDesc(
 				propDetailsMapper.map(selectedAppRequest));
-		return propDetailsMapper.mapping(latestPropDetails);
+		PropDetailsServiceResponse response = propDetailsMapper.mapping(latestPropDetails);
+		if (Objects.nonNull(response)) {
+			response = new PropDetailsServiceResponse();
+			response.setPropId(0l);
+			response.setPropVersion(0l);
+		}
+		return response;
 	}
 
 	/**

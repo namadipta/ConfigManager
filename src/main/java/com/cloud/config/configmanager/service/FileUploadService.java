@@ -49,7 +49,6 @@ public class FileUploadService {
 					e.printStackTrace();
 				}
 			});
-			System.out.println("propertyList" + propertyList);
 			return propertyList;
 		} catch (IOException e) {
 			e.printStackTrace();
