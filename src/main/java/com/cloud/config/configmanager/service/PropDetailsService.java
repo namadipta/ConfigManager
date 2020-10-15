@@ -308,7 +308,7 @@ public class PropDetailsService {
 		PropDetailsEntity latestPropDetails = findFirstByModIdAndLabelIdAndProfIdOrderByPropVersionDesc(
 				propDetailsMapper.map(selectedAppRequest));
 		PropDetailsServiceResponse response = propDetailsMapper.mapping(latestPropDetails);
-		if (Objects.nonNull(response)) {
+		if (Objects.isNull(response)) {
 			response = new PropDetailsServiceResponse();
 			response.setPropId(0l);
 			response.setPropVersion(0l);
