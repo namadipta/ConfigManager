@@ -83,6 +83,7 @@ public class BulkController {
 		} else {
 			savePropDetailRequest.setSavePropDetails(propList);
 		}
+		System.out.println("savePropDetailRequest" + savePropDetailRequest);
 		model.addAttribute("propDetails", propDetailsService.fetchLatestPropVersion(selectedAppRequest));
 		model.addAttribute("saveProperties", savePropDetailRequest);
 		model.addAttribute("appDisplayDetails", utilityService.getAppDetailsFromCache());
@@ -90,6 +91,7 @@ public class BulkController {
 		model.addAttribute("content", "propDetails");
 		model.addAttribute("bulkpage", "true");
 		model.addAttribute("appdetails", "true");
+		System.out.println("model" + model);
 		return "configHome.html";
 	}
 }

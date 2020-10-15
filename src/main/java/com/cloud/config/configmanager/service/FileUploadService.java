@@ -33,12 +33,10 @@ public class FileUploadService {
 		byte[] bytes;
 		try {
 			bytes = file.getBytes();
-			System.out.println(bytes);
 			List<String> kayValue = Arrays.asList(StringUtils.split(new String(bytes), "\n"));
 			if (!CollectionUtils.isEmpty(kayValue)) {
 				kayValue = kayValue.stream().filter(i -> !StringUtils.startsWith(i, "#")).collect(Collectors.toList());
 			}
-			System.out.println("kayValue" + kayValue);
 			List<PropertyPojo> propertyList = new ArrayList<>();
 			kayValue.stream().forEach(j -> {
 				try {
@@ -48,7 +46,6 @@ public class FileUploadService {
 					propertyPojo.setText(pair.get(1));
 					propertyList.add(propertyPojo);
 				} catch (Exception e) {
-					System.out.println("kayValue" + e);
 					e.printStackTrace();
 				}
 			});
