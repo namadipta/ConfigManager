@@ -124,7 +124,8 @@ public class PropDetailsService {
 			String propData = MAPPER.writeValueAsString(request.getPropData());
 			saveRequest.setPropData(propData);
 		}
-		PropDetailsEntity savedData = saveProperties(saveRequest, latestPropDetails.getPropVersion());
+		PropDetailsEntity savedData = saveProperties(saveRequest,
+				Objects.isNull(latestPropDetails) ? 0 : latestPropDetails.getPropVersion());
 		return savedData.getPropId().toString();
 
 	}
