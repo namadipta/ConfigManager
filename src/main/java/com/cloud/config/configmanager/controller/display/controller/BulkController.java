@@ -83,7 +83,7 @@ public class BulkController {
 		} else {
 			savePropDetailRequest.setSavePropDetails(propList);
 		}
-		System.out.println("savePropDetailRequest" + savePropDetailRequest);
+		System.out.println("selectedAppRequest" + selectedAppRequest);
 		model.addAttribute("propDetails", propDetailsService.fetchLatestPropVersion(selectedAppRequest));
 		model.addAttribute("saveProperties", savePropDetailRequest);
 		model.addAttribute("appDisplayDetails", utilityService.getAppDetailsFromCache());
