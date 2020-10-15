@@ -33,6 +33,7 @@ public class FileUploadService {
 		byte[] bytes;
 		try {
 			bytes = file.getBytes();
+			System.out.println(bytes);
 			List<String> kayValue = Arrays.asList(StringUtils.split(new String(bytes), "\n"));
 			if (!CollectionUtils.isEmpty(kayValue)) {
 				kayValue = kayValue.stream().filter(i -> !StringUtils.startsWith(i, "#")).collect(Collectors.toList());
