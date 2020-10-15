@@ -268,7 +268,8 @@ public class PropDetailsService {
 		}
 		String propDataString = MAPPER.writeValueAsString(propData);
 		request.setPropData(propDataString);
-		PropDetailsEntity savedData = this.saveProperties(request, latestPropDetails.getPropVersion());
+		PropDetailsEntity savedData = this.saveProperties(request,
+				Objects.isNull(latestPropDetails) ? 0 : latestPropDetails.getPropVersion());
 		return savedData.getPropId().toString();
 	}
 
