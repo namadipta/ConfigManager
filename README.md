@@ -7,5 +7,5 @@ docker container run --name mysqldb --network configmanager -e MYSQL_ROOT_PASSWO
 
 docker image build -t config-manager .
 
-docker container run --network configmanager --name employee-jdbc-container -p 6880:8080 -d config-manager
+docker container run --network configmanager --name config-manager-container -p 6880:8080 -d config-manager
 
